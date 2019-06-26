@@ -19,7 +19,7 @@
       <ul class="dropdown-menu">
         @foreach($childs as $child)
         @if($child->parent_id == $parent->id)
-        <li><a  style="{{strlen($child->menu_desc) > 22 ? 'height: 70px;' : ''}}" class="nav-link" href="{{ ($child->link_to != NULL ? route($child->link_to) : '#') }}">{{$child->menu_desc}}</a></li>
+        <li><a style="{{strlen($child->menu_desc) > 22 ? 'height: 70px;' : ''}}" class="nav-link" href="{{ ($child->link_to != NULL ? route($child->link_to) : '#') }}">{{$child->menu_desc}}</a></li>
         @endif
         @endforeach
       </ul>

@@ -55,7 +55,7 @@ class User extends Authenticatable
 		return $this->hasMany(\App\Models\Tblemployee::class, 'user_id');
 	}
 
-	public function tbluser_role()
+	public function tbluser_roles()
 	{
 		return $this->hasOne(\App\Models\TbluserRole::class, 'user_id');
     }

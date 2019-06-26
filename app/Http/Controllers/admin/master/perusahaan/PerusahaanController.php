@@ -11,38 +11,35 @@ use App\Models\Tblperusahaan;
 class PerusahaanController extends Controller
 {
     public function index(){
-        $roles = Tblrole::all();
-        $parents = Tblmenu::where('is_parent_child', 'P')->get();
-        return view('admin.master.menu', ['roles' => $roles, 'parents' => $parents]);
+        return view('admin.master.perusahaan.perusahaan');
     }
 
     public function getData(){
-        $menus = Tblmenu::join('tblrole', 'tblrole.role_id', '=', 'tblmenu.role_id')->select(['tblmenu.*', 'tblrole.role_desc']);
-        return Datatables::of($menus)->addColumn('action', function ($data) {
-            return '<div class="row"><div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-primary editbutton" data-id="'.$data->id.'"><i class="fas fa-edit"></i></a></div>
-            <div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-danger deletebutton" data-url="'.route('admin.master.menu.delete', $data->id).'"><i class="fas fa-trash"></i></a></div></div>';
-        })->editColumn('is_visible', function ($data) {return $data->is_visible == 1 ? "true" : "false";})->make(true);
+        return Datatables::of(Tblperusahaan::all())->addColumn('action', function ($data) {
+            return '<div class="row"><div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-primary editbutton" data-id="'.$data->perusahaan_id.'"><i class="fas fa-edit"></i></a></div>
+            <div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-danger deletebutton" data-url="'.route('admin.master.perusahaan.perusahaan.delete', $data->perusahaan_id).'"><i class="fas fa-trash"></i></a></div></div>';
+        })->make(true);
     }
 
-    public function getSingleData($id){
-        $menu = Tblmenu::find($id);
-        return $menu;
+    public function getSingleData($perusahaan_id){
+        $data = Tblperusahaan::find($perusahaan_id);
+        return $data;
     }
 
     public function save(Request $request){
-        $menu = Tblmenu::create($request->all());
+        $data = Tblperusahaan::create($request->all());
         return redirect()->back()->withSuccess('Tambah data berhasil!');
     }
 
     public function update(Request $request){
-        $menu = Tblmenu::find($request->id);
-        $menu->update($request->except('id'));
+        $data = Tblperusahaan::find($request->perusahaan_id);
+        $data->update($request->except('perusahaan_id'));
         return redirect()->back()->withSuccess('Ubah data berhasil!');
     }
 
-    public function delete($id){
-        $menu = Tblmenu::find($id);
-        $menu->delete();
+    public function delete($perusahaan_id){
+        $data = Tblperusahaan::find($perusahaan_id);
+        $data->delete();
         return redirect()->back()->withSuccess('Delete data berhasil!');
     }
 }
