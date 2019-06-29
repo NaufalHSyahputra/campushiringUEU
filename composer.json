@@ -15,6 +15,7 @@
         "laravel/tinker": "^1.0",
         "realrashid/sweet-alert": "^2.0",
         "reliese/laravel": "^0.0.13",
+        "tucker-eric/eloquentfilter": "^1.4",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

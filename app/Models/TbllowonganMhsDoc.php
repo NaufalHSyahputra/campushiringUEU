@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 18 Jun 2019 12:59:03 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:36 +0000.
  */
 
 namespace App\Models;
@@ -14,12 +14,11 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * 
  * @property int $low_mhs_id
  * @property int $mahasiswa_id
- * @property int $doc_id
- * @property string $doc_file
+ * @property int $mhs_doc_id
  * 
- * @property \App\Models\TbllowonganMhsDocMst $tbllowongan_mhs_doc_mst
  * @property \App\Models\Tbllowongan $tbllowongan
  * @property \App\Models\Tblmahasiswa $tblmahasiswa
+ * @property \App\Models\TblmahasiswaDoc $tblmahasiswa_doc
  *
  * @package App\Models
  */
@@ -32,20 +31,14 @@ class TbllowonganMhsDoc extends Eloquent
 	protected $casts = [
 		'low_mhs_id' => 'int',
 		'mahasiswa_id' => 'int',
-		'doc_id' => 'int'
+		'mhs_doc_id' => 'int'
 	];
 
 	protected $fillable = [
 		'low_mhs_id',
 		'mahasiswa_id',
-		'doc_id',
-		'doc_file'
+		'mhs_doc_id'
 	];
-
-	public function tbllowongan_mhs_doc_mst()
-	{
-		return $this->belongsTo(\App\Models\TbllowonganMhsDocMst::class, 'doc_id');
-	}
 
 	public function tbllowongan()
 	{
@@ -55,5 +48,10 @@ class TbllowonganMhsDoc extends Eloquent
 	public function tblmahasiswa()
 	{
 		return $this->belongsTo(\App\Models\Tblmahasiswa::class, 'mahasiswa_id');
+	}
+
+	public function tblmahasiswa_doc()
+	{
+		return $this->belongsTo(\App\Models\TblmahasiswaDoc::class, 'mhs_doc_id');
 	}
 }

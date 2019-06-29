@@ -42,12 +42,29 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'as' => 'admin.', 'mi
             Route::post('/save', 'RoleController@save')->name('role.save');
             Route::post('/update', 'RoleController@update')->name('role.update');
         });
+        Route::prefix('employee')->group(function(){
+            Route::get('/', 'EmployeeController@index')->name('employee');
+            Route::get('/getData', 'EmployeeController@getData')->name('employee.getdata');
+            Route::get('/get/{id}', 'EmployeeController@getSingleData')->name('employee.get');
+            Route::get('/delete/{id}', 'EmployeeController@delete')->name('employee.delete');
+            Route::post('/save', 'EmployeeController@save')->name('employee.save');
+            Route::post('/update', 'EmployeeController@update')->name('employee.update');
+        });
+        Route::prefix('dokumen')->group(function(){
+            Route::get('/', 'DokumenController@index')->name('dokumen');
+            Route::get('/getData', 'DokumenController@getData')->name('dokumen.getdata');
+            Route::get('/get/{id}', 'DokumenController@getSingleData')->name('dokumen.get');
+            Route::get('/delete/{id}', 'DokumenController@delete')->name('dokumen.delete');
+            Route::post('/save', 'DokumenController@save')->name('dokumen.save');
+            Route::post('/update', 'DokumenController@update')->name('dokumen.update');
+        });
         Route::group(['prefix' => 'lowongan', 'namespace' => 'lowongan', 'as' => 'lowongan.'], function(){
             /*Route Data Lowongan */
             Route::get('/', 'LowonganController@index')->name('index');
             Route::get('/getData', 'LowonganController@getData')->name('getdata');
             Route::get('/get/{id}', 'LowonganController@getSingleData')->name('get');
             Route::get('/delete/{id}', 'LowonganController@delete')->name('delete');
+            Route::get('/testFilter', 'LowonganController@testFilter')->name('testFilter');
             Route::post('/save', 'LowonganController@save')->name('save');
             Route::post('/update', 'LowonganController@update')->name('update');
 

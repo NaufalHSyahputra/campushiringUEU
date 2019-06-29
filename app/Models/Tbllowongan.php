@@ -2,32 +2,30 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 18 Jun 2019 12:53:48 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:36 +0000.
  */
 
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+use EloquentFilter\Filterable;
 
 /**
  * Class Tbllowongan
  *
  * @property int $lowongan_id
  * @property int $perusahaan_id
- * @property \Carbon\Carbon $lowongan_date
- * @property \Carbon\Carbon $lowongan_expired
- * @property string $lowongan_durasi
- * @property string $lowongan_desc
- * @property int $is_active
- * @property int $is_approved
- * @property bool $is_salary_nego
- * @property int $salary_min
- * @property int $salary_max
+ * @property string $title
+ * @property string $deskripsi
+ * @property bool $is_active
+ * @property \Carbon\Carbon $active_date
+ * @property bool $is_approved
+ * @property bool $duration
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
  * @property \App\Models\Tblperusahaan $tblperusahaan
- * @property \App\Models\TbllowonganLevel $tbllowongan_level
+ * @property \App\Models\TbllowonganDetil $tbllowongan_detil
  * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_mhs
  * @property \App\Models\TbllowonganMhsDoc $tbllowongan_mhs_doc
  * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_prints
@@ -38,34 +36,30 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Tbllowongan extends Eloquent
 {
+    use Filterable;
+
 	protected $table = 'tbllowongan';
 	protected $primaryKey = 'lowongan_id';
 
 	protected $casts = [
 		'perusahaan_id' => 'int',
-		'is_active' => 'int',
-		'is_approved' => 'int',
-		'is_salary_nego' => 'bool',
-		'salary_min' => 'int',
-		'salary_max' => 'int'
+		'is_active' => 'bool',
+		'is_approved' => 'bool',
+		'duration' => 'bool'
 	];
 
 	protected $dates = [
-		'lowongan_date',
-		'lowongan_expired'
+		'active_date'
 	];
 
 	protected $fillable = [
 		'perusahaan_id',
-		'lowongan_date',
-		'lowongan_expired',
-		'lowongan_durasi',
-		'lowongan_desc',
+		'title',
+		'deskripsi',
 		'is_active',
+		'active_date',
 		'is_approved',
-		'is_salary_nego',
-		'salary_min',
-		'salary_max'
+		'duration'
 	];
 
 	public function tblperusahaan()
@@ -73,9 +67,9 @@ class Tbllowongan extends Eloquent
 		return $this->belongsTo(\App\Models\Tblperusahaan::class, 'perusahaan_id');
 	}
 
-	public function tbllowongan_level()
+	public function tbllowongan_detil()
 	{
-		return $this->hasOne(\App\Models\TbllowonganLevel::class, 'lowongan_id');
+		return $this->hasOne(\App\Models\TbllowonganDetil::class, 'lowongan_id');
 	}
 
 	public function tbllowongan_mhs()
@@ -88,17 +82,17 @@ class Tbllowongan extends Eloquent
 		return $this->hasOne(\App\Models\TbllowonganMhsDoc::class, 'low_mhs_id');
 	}
 
-	public function tbllowongan_req_print()
+	public function tbllowongan_req_prints()
 	{
 		return $this->hasMany(\App\Models\TbllowonganReqPrint::class, 'lowongan_id');
 	}
 
-	public function tbllowongan_request()
+	public function tbllowongan_requests()
 	{
 		return $this->hasMany(\App\Models\TbllowonganRequest::class, 'lowongan_id');
 	}
 
-	public function tbllowongan_skill()
+	public function tbllowongan_skills()
 	{
 		return $this->hasMany(\App\Models\TbllowonganSkill::class, 'lowongan_id');
 	}

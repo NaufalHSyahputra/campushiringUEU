@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 17 Jun 2019 09:02:03 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:36 +0000.
  */
 
 namespace App\Models;
@@ -23,14 +23,15 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Tblfakultas extends Eloquent
 {
-	protected $primaryKey = 'fakultas_id';
+    protected $primaryKey = 'fakultas_id';
+    protected $table = 'tblfakultas';
 
 	protected $fillable = [
 		'fakultas_name'
 	];
 
-	public function tbljurusan()
+	public function tbljurusans()
 	{
-		return $this->hasOne(\App\Models\Tbljurusan::class, 'fakultas_id');
+		return $this->hasMany(\App\Models\Tbljurusan::class, 'fakultas_id');
 	}
 }

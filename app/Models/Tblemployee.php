@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 18 Jun 2019 12:53:48 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:36 +0000.
  */
 
 namespace App\Models;
@@ -13,7 +13,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * Class Tblemployee
  * 
  * @property int $employee_id
- * @property string $name
+ * @property string $nama
  * @property string $alamat
  * @property string $phone
  * @property string $email
@@ -34,7 +34,7 @@ class Tblemployee extends Eloquent
 	];
 
 	protected $fillable = [
-		'name',
+		'nama',
 		'alamat',
 		'phone',
 		'email',

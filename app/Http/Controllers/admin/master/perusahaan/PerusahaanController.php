@@ -7,17 +7,21 @@ use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Tblperusahaan;
+use App\Models\Tblkota;
+use App\Models\Tblprovinsi;
 
 class PerusahaanController extends Controller
 {
     public function index(){
-        return view('admin.master.perusahaan.perusahaan');
+        $provs = Tblprovinsi::all();
+        $kotas = Tblkota::all();
+        return view('admin.master.perusahaan.perusahaan', ['provs' => $provs, 'kotas' => $kotas]);
     }
 
     public function getData(){
-        return Datatables::of(Tblperusahaan::all())->addColumn('action', function ($data) {
-            return '<div class="row"><div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-primary editbutton" data-id="'.$data->perusahaan_id.'"><i class="fas fa-edit"></i></a></div>
-            <div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-danger deletebutton" data-url="'.route('admin.master.perusahaan.perusahaan.delete', $data->perusahaan_id).'"><i class="fas fa-trash"></i></a></div></div>';
+        $perusahaans = Tblperusahaan::join('tblprovinsi', 'tblprovinsi.prov_id', '=', 'tblperusahaan.prov_id')->join('tblkota', 'tblkota.kota_id', '=', 'tblperusahaan.kota_id')->select(['tblperusahaan.*', 'tblkota.kota_name', 'tblprovinsi.prov_name']);
+        return Datatables::of($perusahaans)->addColumn('action', function ($data) {
+            return '<a href="#" class="btn btn-icon btn-primary editbutton" data-id="'.$data->perusahaan_id.'"><i class="fas fa-edit"></i></a><a href="#" class="btn btn-icon btn-danger deletebutton" data-url="'.route('admin.master.perusahaan.delete', $data->perusahaan_id).'"><i class="fas fa-trash"></i></a>';
         })->make(true);
     }
 

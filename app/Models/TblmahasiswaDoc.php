@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 18 Jun 2019 12:53:49 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:37 +0000.
  */
 
 namespace App\Models;
@@ -12,6 +12,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 /**
  * Class TblmahasiswaDoc
  * 
+ * @property int $mhs_doc_id
  * @property int $mhs_req_id
  * @property int $doc_id
  * @property string $doc_file
@@ -20,15 +21,16 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $checked_by
  * @property \Carbon\Carbon $checked_date
  * 
- * @property \App\Models\TblmahasiswaDocMst $tblmahasiswa_doc_mst
+ * @property \App\Models\TbldokumenMst $tbldokumen_mst
  * @property \App\Models\TblmahasiswaRequest $tblmahasiswa_request
+ * @property \App\Models\TbllowonganMhsDoc $tbllowongan_mhs_doc
  *
  * @package App\Models
  */
 class TblmahasiswaDoc extends Eloquent
 {
 	protected $table = 'tblmahasiswa_doc';
-	public $incrementing = false;
+	protected $primaryKey = 'mhs_doc_id';
 	public $timestamps = false;
 
 	protected $casts = [
@@ -51,13 +53,18 @@ class TblmahasiswaDoc extends Eloquent
 		'checked_date'
 	];
 
-	public function tblmahasiswa_doc_mst()
+	public function tbldokumen_mst()
 	{
-		return $this->belongsTo(\App\Models\TblmahasiswaDocMst::class, 'doc_id');
+		return $this->belongsTo(\App\Models\TbldokumenMst::class, 'doc_id');
 	}
 
 	public function tblmahasiswa_request()
 	{
 		return $this->belongsTo(\App\Models\TblmahasiswaRequest::class, 'mhs_req_id');
+	}
+
+	public function tbllowongan_mhs_doc()
+	{
+		return $this->hasOne(\App\Models\TbllowonganMhsDoc::class, 'mhs_doc_id');
 	}
 }

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 18 Jun 2019 12:53:49 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:37 +0000.
  */
 
 namespace App\Models;
@@ -11,7 +11,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Tbluser
- *
+ * 
  * @property int $user_id
  * @property string $lgname
  * @property string $password
@@ -21,7 +21,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $is_logged_on
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- *
+ * @property \Carbon\Carbon $email_verified_at
+ * 
  * @property \Illuminate\Database\Eloquent\Collection $tblemployees
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswas
  * @property \Illuminate\Database\Eloquent\Collection $tblperusahaans
@@ -40,6 +41,10 @@ class Tbluser extends Eloquent
 		'is_logged_on' => 'int'
 	];
 
+	protected $dates = [
+		'email_verified_at'
+	];
+
 	protected $hidden = [
 		'password',
 		'remember_token'
@@ -51,20 +56,21 @@ class Tbluser extends Eloquent
 		'email',
 		'remember_token',
 		'fullname',
-		'is_logged_on'
+		'is_logged_on',
+		'email_verified_at'
 	];
 
-	public function tblemployee()
+	public function tblemployees()
 	{
 		return $this->hasMany(\App\Models\Tblemployee::class, 'user_id');
 	}
 
-	public function tblmahasiswa()
+	public function tblmahasiswas()
 	{
 		return $this->hasMany(\App\Models\Tblmahasiswa::class, 'user_id');
 	}
 
-	public function tblperusahaan()
+	public function tblperusahaans()
 	{
 		return $this->hasMany(\App\Models\Tblperusahaan::class, 'user_id');
 	}

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 18 Jun 2019 12:53:48 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:36 +0000.
  */
 
 namespace App\Models;
@@ -10,13 +10,14 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Tblkota
+ * Class tblkota
  *
- * @property string $city_id
+ * @property string $kota_id
  * @property string $prov_id
- * @property string $city_name
+ * @property string $kota_name
  *
  * @property \App\Models\Tblprovinsi $tblprovinsi
+ * @property \App\Models\TbllowonganDetil $tbllowongan_detil
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswas
  * @property \Illuminate\Database\Eloquent\Collection $tblperusahaans
  *
@@ -24,13 +25,14 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Tblkota extends Eloquent
 {
-	protected $primaryKey = 'city_id';
+    protected $primaryKey = 'kota_id';
+    protected $table = 'tblkota';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $fillable = [
 		'prov_id',
-		'city_name'
+		'kota_name'
 	];
 
 	public function tblprovinsi()
@@ -38,13 +40,18 @@ class Tblkota extends Eloquent
 		return $this->belongsTo(\App\Models\Tblprovinsi::class, 'prov_id');
 	}
 
-	public function tblmahasiswa()
+	public function tbllowongan_detil()
 	{
-		return $this->hasMany(\App\Models\Tblmahasiswa::class, 'city_id');
+		return $this->hasOne(\App\Models\TbllowonganDetil::class, 'kota_id');
 	}
 
-	public function tblperusahaan()
+	public function tblmahasiswas()
 	{
-		return $this->hasMany(\App\Models\Tblperusahaan::class, 'city_id');
+		return $this->hasMany(\App\Models\Tblmahasiswa::class, 'kota_id');
+	}
+
+	public function tblperusahaans()
+	{
+		return $this->hasMany(\App\Models\Tblperusahaan::class, 'kota_id');
 	}
 }

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 18 Jun 2019 12:53:48 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:36 +0000.
  */
 
 namespace App\Models;
@@ -11,10 +11,11 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class TbllowonganPrintStatusMst
- *
+ * 
  * @property int $status_id
  * @property string $status_name
- *
+ * @property string $warna
+ * 
  * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_prints
  *
  * @package App\Models
@@ -26,10 +27,11 @@ class TbllowonganPrintStatusMst extends Eloquent
 	public $timestamps = false;
 
 	protected $fillable = [
-		'status_name'
+		'status_name',
+		'warna'
 	];
 
-	public function tbllowongan_req_print()
+	public function tbllowongan_req_prints()
 	{
 		return $this->hasMany(\App\Models\TbllowonganReqPrint::class, 'status_id');
 	}

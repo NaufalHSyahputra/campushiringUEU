@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Reliese\Coders\CodersServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        EloquentFilter\ServiceProvider::class,
 
     ],
 

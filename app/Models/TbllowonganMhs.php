@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 17 Jun 2019 09:02:03 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:36 +0000.
  */
 
 namespace App\Models;
@@ -15,7 +15,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $low_mhs_id
  * @property int $mahasiswa_id
  * @property int $lowongan_id
- * @property \Carbon\Carbon $dates
+ * @property \Carbon\Carbon $apply_dates
  * @property int $is_respond
  * @property string $respond_notes
  * @property \Carbon\Carbon $respond_date
@@ -28,7 +28,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class TbllowonganMhs extends Eloquent
 {
-	protected $primaryKey = 'low_mhs_id';
+    protected $primaryKey = 'low_mhs_id';
+    protected $table = 'tbllowongan_mhs';
 	public $timestamps = false;
 
 	protected $casts = [
@@ -38,14 +39,14 @@ class TbllowonganMhs extends Eloquent
 	];
 
 	protected $dates = [
-		'dates',
+		'apply_dates',
 		'respond_date'
 	];
 
 	protected $fillable = [
 		'mahasiswa_id',
 		'lowongan_id',
-		'dates',
+		'apply_dates',
 		'is_respond',
 		'respond_notes',
 		'respond_date',

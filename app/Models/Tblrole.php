@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 18 Jun 2019 12:53:49 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:37 +0000.
  */
 
 namespace App\Models;
@@ -11,12 +11,12 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Tblrole
- *
+ * 
  * @property int $role_id
  * @property string $role_desc
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- *
+ * 
  * @property \Illuminate\Database\Eloquent\Collection $tblmenus
  * @property \Illuminate\Database\Eloquent\Collection $tbluser_roles
  *
@@ -36,7 +36,7 @@ class Tblrole extends Eloquent
 		return $this->hasMany(\App\Models\Tblmenu::class, 'role_id');
 	}
 
-	public function tbluser_role()
+	public function tbluser_roles()
 	{
 		return $this->hasMany(\App\Models\TbluserRole::class, 'role_id');
 	}

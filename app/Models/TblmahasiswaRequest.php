@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 18 Jun 2019 12:53:49 +0000.
+ * Date: Thu, 27 Jun 2019 16:26:37 +0000.
  */
 
 namespace App\Models;
@@ -21,7 +21,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $notes
  * 
  * @property \App\Models\Tblmahasiswa $tblmahasiswa
- * @property \App\Models\TblmahasiswaDoc $tblmahasiswa_doc
+ * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswa_docs
  *
  * @package App\Models
  */
@@ -55,8 +55,8 @@ class TblmahasiswaRequest extends Eloquent
 		return $this->belongsTo(\App\Models\Tblmahasiswa::class, 'mahasiswa_id');
 	}
 
-	public function tblmahasiswa_doc()
+	public function tblmahasiswa_docs()
 	{
-		return $this->hasOne(\App\Models\TblmahasiswaDoc::class, 'mhs_req_id');
+		return $this->hasMany(\App\Models\TblmahasiswaDoc::class, 'mhs_req_id');
 	}
 }
