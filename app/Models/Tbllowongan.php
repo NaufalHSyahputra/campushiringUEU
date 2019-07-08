@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 27 Jun 2019 16:26:36 +0000.
+ * Date: Wed, 03 Jul 2019 16:57:04 +0000.
  */
 
 namespace App\Models;
@@ -19,6 +19,7 @@ use EloquentFilter\Filterable;
  * @property string $deskripsi
  * @property bool $is_active
  * @property \Carbon\Carbon $active_date
+ * @property \Carbon\Carbon $expired_date
  * @property bool $is_approved
  * @property bool $duration
  * @property \Carbon\Carbon $created_at
@@ -49,7 +50,8 @@ class Tbllowongan extends Eloquent
 	];
 
 	protected $dates = [
-		'active_date'
+		'active_date',
+		'expired_date'
 	];
 
 	protected $fillable = [
@@ -58,6 +60,7 @@ class Tbllowongan extends Eloquent
 		'deskripsi',
 		'is_active',
 		'active_date',
+		'expired_date',
 		'is_approved',
 		'duration'
 	];
@@ -95,5 +98,5 @@ class Tbllowongan extends Eloquent
 	public function tbllowongan_skills()
 	{
 		return $this->hasMany(\App\Models\TbllowonganSkill::class, 'lowongan_id');
-	}
+    }
 }

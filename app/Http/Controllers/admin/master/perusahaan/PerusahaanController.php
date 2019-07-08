@@ -19,7 +19,7 @@ class PerusahaanController extends Controller
     }
 
     public function getData(){
-        $perusahaans = Tblperusahaan::join('tblprovinsi', 'tblprovinsi.prov_id', '=', 'tblperusahaan.prov_id')->join('tblkota', 'tblkota.kota_id', '=', 'tblperusahaan.kota_id')->select(['tblperusahaan.*', 'tblkota.kota_name', 'tblprovinsi.prov_name']);
+        $perusahaans = Tblperusahaan::join('tblprovinsi', 'tblprovinsi.prov_id', '=', 'tblperusahaan.prov_id')->join('tblkota', 'tblkota.kota_id', '=', 'tblperusahaan.kota_id')->select(['tblperusahaan.*', 'tblkota.kota_nama', 'tblprovinsi.prov_nama']);
         return Datatables::of($perusahaans)->addColumn('action', function ($data) {
             return '<a href="#" class="btn btn-icon btn-primary editbutton" data-id="'.$data->perusahaan_id.'"><i class="fas fa-edit"></i></a><a href="#" class="btn btn-icon btn-danger deletebutton" data-url="'.route('admin.master.perusahaan.delete', $data->perusahaan_id).'"><i class="fas fa-trash"></i></a>';
         })->make(true);

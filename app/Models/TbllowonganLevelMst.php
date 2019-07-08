@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 27 Jun 2019 16:26:36 +0000.
+ * Date: Wed, 03 Jul 2019 16:57:05 +0000.
  */
 
 namespace App\Models;
@@ -14,8 +14,6 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * 
  * @property int $level_id
  * @property string $level_desc
- * 
- * @property \App\Models\TbllowonganDetil $tbllowongan_detil
  *
  * @package App\Models
  */
@@ -28,9 +26,4 @@ class TbllowonganLevelMst extends Eloquent
 	protected $fillable = [
 		'level_desc'
 	];
-
-	public function tbllowongan_detil()
-	{
-		return $this->hasOne(\App\Models\TbllowonganDetil::class, 'level_id');
-	}
 }

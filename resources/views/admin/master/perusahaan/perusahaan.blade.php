@@ -60,7 +60,7 @@
                             <select name="prov_id" id="prov_id" class="form-control">
                                 <option value="">--Pilih Provinsi--</option>
                                 @foreach ($provs as $prov)
-                                    <option value="{{ $prov->prov_id }}">{{ $prov->prov_name }}</option>
+                                    <option value="{{ $prov->prov_id }}">{{ $prov->prov_nama }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -69,7 +69,7 @@
                             <select name="kota_id" id="kota_id" class="form-control">
                                     <option value="">--Pilih kota--</option>
                                 @foreach ($kotas as $kota)
-                                <option value="{{ $kota->kota_id }}" class="{{ $kota->prov_id }}">{{ $kota->kota_name }}</option>
+                                <option value="{{ $kota->kota_id }}" class="{{ $kota->prov_id }}">{{ $kota->kota_nama }}</option>
                             @endforeach
                             </select>
                         </div>
@@ -125,7 +125,7 @@
                             <select name="prov_id" id="prov_id_edit" class="form-control">
                                     <option value="">--Pilih Provinsi--</option>
                                 @foreach ($provs as $prov)
-                                    <option value="{{ $prov->prov_id }}">{{ $prov->prov_name }}</option>
+                                    <option value="{{ $prov->prov_id }}">{{ $prov->prov_nama }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -134,7 +134,7 @@
                             <select name="kota_id" id="kota_id_edit" class="form-control">
                                     <option value="">--Pilih Kota--</option>
                             @foreach ($kotas as $kota)
-                                <option value="{{ $kota->kota_id }}" class="{{ $kota->prov_id }}">{{ $kota->kota_name }}</option>
+                                <option value="{{ $kota->kota_id }}" class="{{ $kota->prov_id }}">{{ $kota->kota_nama }}</option>
                             @endforeach
                             </select>
                         </div>
@@ -190,12 +190,12 @@ $('#table-1').dataTable({
             name: 'tblperusahaan.alamat'
         },
         {
-            data: 'prov_name',
-            name: 'tblprovinsi.prov_name'
+            data: 'prov_nama',
+            name: 'tblprovinsi.prov_nama'
         },
         {
-            data: 'kota_name',
-            name: 'tblkota.kota_name'
+            data: 'kota_nama',
+            name: 'tblkota.kota_nama'
         },
         {
             data: 'nohp',

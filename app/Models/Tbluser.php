@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 27 Jun 2019 16:26:37 +0000.
+ * Date: Mon, 08 Jul 2019 16:27:31 +0000.
  */
 
 namespace App\Models;
@@ -17,7 +17,6 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $password
  * @property string $email
  * @property string $remember_token
- * @property string $fullname
  * @property int $is_logged_on
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -34,10 +33,8 @@ class Tbluser extends Eloquent
 {
 	protected $table = 'tbluser';
 	protected $primaryKey = 'user_id';
-	public $incrementing = false;
 
 	protected $casts = [
-		'user_id' => 'int',
 		'is_logged_on' => 'int'
 	];
 
@@ -55,7 +52,6 @@ class Tbluser extends Eloquent
 		'password',
 		'email',
 		'remember_token',
-		'fullname',
 		'is_logged_on',
 		'email_verified_at'
 	];

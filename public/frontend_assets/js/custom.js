@@ -11,7 +11,7 @@ $(window).on("load", function() {
 	$(".apply-btn").on("click", function(){
     	$(".apply-job-popup").addClass("active");
    		return false;
-	}); 
+	});
 	$('.close-btn, .popup-overlay').on("click",function(){
 	    $(".apply-job-popup").removeClass("active");
 	});
@@ -22,7 +22,7 @@ $(window).on("load", function() {
 	$(".login-pop").on("click", function(){
     $(".jbm-login-popup").addClass("active");
     return false;
-	}); 
+	});
 	$(".close-btn,.popup-overlay").on("click", function(){
 		$(".jbm-login-popup").removeClass("active");
 	});
@@ -33,7 +33,7 @@ $(window).on("load", function() {
 	$(".register-pop").on("click", function(){
     $(".jbm-can-register-popup").addClass("active");
 	return false;
-	}); 
+	});
 	$('.close-btn, .popup-overlay').on("click",function(){
 	    $(".jbm-can-register-popup").removeClass("active");
 	});
@@ -57,7 +57,7 @@ $(window).on("load", function() {
 	    $(this).addClass('selected');
 	    $("#"+tab_id).addClass('current');
 	});
-	// Login form active 
+	// Login form active
 	$(".jbm-form ul li").on("click", function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 	});

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 27 Jun 2019 16:26:37 +0000.
+ * Date: Mon, 08 Jul 2019 18:15:12 +0000.
  */
 
 namespace App\Models;
@@ -18,16 +18,22 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $prov_id
  * @property string $nama
  * @property string $alamat
- * @property string $nohp
+ * @property string $phone_number
  * @property string $email
  * @property int $is_approved
  * @property string $deskripsi
+ * @property string $logo_pic
+ * @property string $web
+ * @property string $pic_name
+ * @property string $pic_phone
+ * @property string $pic_email
+ * @property string $pic_title
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
- * @property \App\Models\Tbluser $tbluser
- * @property \App\Models\tblkota $tblkota
+ * @property \App\Models\Tblkotum $tblkotum
  * @property \App\Models\Tblprovinsi $tblprovinsi
+ * @property \App\Models\Tbluser $tbluser
  * @property \Illuminate\Database\Eloquent\Collection $tbllowongans
  * @property \Illuminate\Database\Eloquent\Collection $tblperusahaan_requests
  *
@@ -49,20 +55,21 @@ class Tblperusahaan extends Eloquent
 		'prov_id',
 		'nama',
 		'alamat',
-		'nohp',
+		'phone_number',
 		'email',
 		'is_approved',
-		'deskripsi'
+		'deskripsi',
+		'logo_pic',
+		'web',
+		'pic_name',
+		'pic_phone',
+		'pic_email',
+		'pic_title'
 	];
-
-	public function tbluser()
-	{
-		return $this->belongsTo(\App\Models\Tbluser::class, 'user_id');
-	}
 
 	public function tblkota()
 	{
-		return $this->belongsTo(\App\Models\tblkota::class, 'kota_id');
+		return $this->belongsTo(\App\Models\Tblkotum::class, 'kota_id');
 	}
 
 	public function tblprovinsi()
@@ -70,12 +77,17 @@ class Tblperusahaan extends Eloquent
 		return $this->belongsTo(\App\Models\Tblprovinsi::class, 'prov_id');
 	}
 
-	public function tbllowongans()
+	public function tbluser()
+	{
+		return $this->belongsTo(\App\Models\Tbluser::class, 'user_id');
+	}
+
+	public function tbllowongan()
 	{
 		return $this->hasMany(\App\Models\Tbllowongan::class, 'perusahaan_id');
 	}
 
-	public function tblperusahaan_requests()
+	public function tblperusahaan_request()
 	{
 		return $this->hasMany(\App\Models\TblperusahaanRequest::class, 'perusahaan_id');
 	}

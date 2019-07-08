@@ -1,5 +1,4 @@
 <?php
-
 Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'roles'], 'roles' => 'Admin'], function(){
     Route::group(['prefix' => 'master', 'namespace' => 'master', 'as' => 'master.'], function(){
         Route::prefix('menu')->group(function(){
@@ -64,7 +63,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'as' => 'admin.', 'mi
             Route::get('/getData', 'LowonganController@getData')->name('getdata');
             Route::get('/get/{id}', 'LowonganController@getSingleData')->name('get');
             Route::get('/delete/{id}', 'LowonganController@delete')->name('delete');
-            Route::get('/testFilter', 'LowonganController@testFilter')->name('testFilter');
             Route::post('/save', 'LowonganController@save')->name('save');
             Route::post('/update', 'LowonganController@update')->name('update');
 

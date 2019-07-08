@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 27 Jun 2019 16:26:37 +0000.
+ * Date: Wed, 03 Jul 2019 16:57:05 +0000.
  */
 
 namespace App\Models;
@@ -13,7 +13,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * Class Tblprovinsi
  *
  * @property string $prov_id
- * @property string $prov_name
+ * @property string $prov_nama
  *
  * @property \Illuminate\Database\Eloquent\Collection $tblkota
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswas
@@ -29,17 +29,17 @@ class Tblprovinsi extends Eloquent
 	public $timestamps = false;
 
 	protected $fillable = [
-		'prov_name'
+		'prov_nama'
 	];
 
 	public function tblkota()
 	{
-		return $this->hasMany(\App\Models\tblkota::class, 'prov_id');
+		return $this->hasMany(\App\Models\Tblkota::class, 'prov_id');
 	}
 
 	public function tblmahasiswas()
 	{
-		return $this->hasMany(\App\Models\Tblmahasiswa::class, 'provinsi_id');
+		return $this->hasMany(\App\Models\Tblmahasiswa::class, 'prov_id');
 	}
 
 	public function tblperusahaans()

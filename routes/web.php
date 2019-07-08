@@ -19,5 +19,8 @@ Route::get('user/{user}', [
 	'roles' => ['administrator', 'manager'] // Only an administrator, or a manager can access this route
 ]);
 */
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth', 'roles'], 'roles' => ['Admin', 'Career Center', 'Perusahaan']], function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 Route::get('/logout', 'HomeController@logout')->name('logout');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');

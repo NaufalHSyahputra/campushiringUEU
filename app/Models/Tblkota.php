@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 27 Jun 2019 16:26:36 +0000.
+ * Date: Wed, 03 Jul 2019 16:57:04 +0000.
  */
 
 namespace App\Models;
@@ -10,11 +10,11 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class tblkota
+ * Class Tblkota
  *
  * @property string $kota_id
+ * @property string $kota_nama
  * @property string $prov_id
- * @property string $kota_name
  *
  * @property \App\Models\Tblprovinsi $tblprovinsi
  * @property \App\Models\TbllowonganDetil $tbllowongan_detil
@@ -25,14 +25,14 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Tblkota extends Eloquent
 {
-    protected $primaryKey = 'kota_id';
-    protected $table = 'tblkota';
+	protected $primaryKey = 'kota_id';
 	public $incrementing = false;
-	public $timestamps = false;
+    public $timestamps = false;
+    protected $table = 'tblkota';
 
 	protected $fillable = [
-		'prov_id',
-		'kota_name'
+		'kota_nama',
+		'prov_id'
 	];
 
 	public function tblprovinsi()

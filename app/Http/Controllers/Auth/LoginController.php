@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use App\Models\Tbluser;
+use App\Models\Tblmahasiswa;
+use Illuminate\Http\Request;
+use App\Models\Tblperusahaan;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -41,6 +44,22 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        Tbluser::where("user_id", $user->user_id)->update(["is_logged_on" => 1]);
+        /*Check apakah user yang login itu mahasiswa*/
+        if (Tblmahasiswa::where('user_id', $user->user_id)->count() > 0) {
+            if (Tblmahasiswa::where('user_id', $user->user_id)->first()->is_approved == 0) {
+                Auth::logout();
+                return redirect()->route('login')->with('failed', 'Akun anda belum di approve oleh Career Center Universitas Esa Unggul');
+            } else {
+                return redirect()->route('index');
+            }
+            /*Check apakah usr yang login itu perusahaan */
+        } else if (Tblperusahaan::where('user_id', $user->user_id)->count() > 0){
+            if (Tblperusahaan::where('user_id', $user->user_id)->first()->is_approved == 0) {
+                Auth::logout();
+                return redirect()->route('login')->with('failed', 'Akun anda belum di approve oleh Career Center Universitas Esa Unggul');
+            } else {
+                return redirect()->route('home');
+            }
+        }
     }
 }

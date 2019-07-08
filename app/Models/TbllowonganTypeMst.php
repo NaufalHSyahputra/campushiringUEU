@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 29 Jun 2019 18:20:13 +0000.
+ * Date: Wed, 03 Jul 2019 16:57:05 +0000.
  */
 
 namespace App\Models;
@@ -11,10 +11,10 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class TbllowonganTypeMst
- *
+ * 
  * @property int $low_type_id
  * @property string $low_type_desc
- *
+ * 
  * @property \App\Models\TbllowonganDetil $tbllowongan_detil
  *
  * @package App\Models

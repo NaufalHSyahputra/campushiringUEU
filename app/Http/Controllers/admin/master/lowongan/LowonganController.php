@@ -12,10 +12,6 @@ use App\Models\Tblperusahaan;
 class LowonganController extends Controller
 {
 
-    public function testFilter(Request $request){
-        return Tbllowongan::filter($request->all())->get();
-    }
-
     public function index(){
         $prs = Tblperusahaan::where('is_approved', 1)->get();
         return view('admin.master.lowongan.lowongan', ['prs' => $prs]);

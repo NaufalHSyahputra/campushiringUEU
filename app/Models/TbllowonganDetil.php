@@ -2,12 +2,13 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 29 Jun 2019 18:18:46 +0000.
+ * Date: Thu, 04 Jul 2019 02:14:12 +0000.
  */
 
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+use EloquentFilter\Filterable;
 
 /**
  * Class TbllowonganDetil
@@ -15,25 +16,32 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $lowongan_id
  * @property string $kota_id
  * @property int $low_type_id
+ * @property int $fakultas_id
+ * @property int $skill_id
  * @property int $salary_min
  * @property int $salary_max
  * @property int $is_salary_nego
  *
  * @property \App\Models\Tbllowongan $tbllowongan
- * @property \App\Models\Tblkotum $tblkota
+ * @property \App\Models\Tblkota $tblkota
  * @property \App\Models\TbllowonganTypeMst $tbllowongan_type_mst
+ * @property \App\Models\Tblskill $tblskill
+ * @property \App\Models\Tblfakultas $tblfakultas
  *
  * @package App\Models
  */
 class TbllowonganDetil extends Eloquent
 {
+    use Filterable;
 	protected $table = 'tbllowongan_detil';
 	public $incrementing = false;
-	public $timestamps = false;
+    public $timestamps = false;
 
 	protected $casts = [
 		'lowongan_id' => 'int',
 		'low_type_id' => 'int',
+		'fakultas_id' => 'int',
+		'skill_id' => 'int',
 		'salary_min' => 'int',
 		'salary_max' => 'int',
 		'is_salary_nego' => 'int'
@@ -43,6 +51,8 @@ class TbllowonganDetil extends Eloquent
 		'lowongan_id',
 		'kota_id',
 		'low_type_id',
+		'fakultas_id',
+		'skill_id',
 		'salary_min',
 		'salary_max',
 		'is_salary_nego'
@@ -61,5 +71,15 @@ class TbllowonganDetil extends Eloquent
 	public function tbllowongan_type_mst()
 	{
 		return $this->belongsTo(\App\Models\TbllowonganTypeMst::class, 'low_type_id');
+	}
+
+	public function tblskill()
+	{
+		return $this->belongsTo(\App\Models\Tblskill::class, 'skill_id');
+	}
+
+	public function tblfakultas()
+	{
+		return $this->belongsTo(\App\Models\Tblfakultas::class, 'fakultas_id');
 	}
 }
