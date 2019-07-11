@@ -17,7 +17,6 @@ class User extends Authenticatable
      * @var array
      */
 	protected $fillable = [
-		'lgname',
 		'password',
 		'email',
 		'remember_token',
@@ -42,7 +41,7 @@ class User extends Authenticatable
 
 	public function tblmahasiswa()
 	{
-		return $this->hasMany(\App\Models\Tblmahasiswa::class, 'user_id');
+		return $this->hasOne(\App\Models\Tblmahasiswa::class, 'user_id', 'user_id');
 	}
 
 	public function tblperusahaan()

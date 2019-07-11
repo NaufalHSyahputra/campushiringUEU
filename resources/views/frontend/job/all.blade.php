@@ -8,7 +8,7 @@
                 <div class="jbm-banner-text text-center">
                     <div class="jbm-ban-txt-line-1">
                         <h1>
-                            HASIL PENCARIAN LOWONGAN PEKERJAAN
+                            LOWONGAN PEKERJAAN
                         </h1>
                     </div>
                     <!--
@@ -45,7 +45,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12 jbm-job-loop">
                     <div class="jbm-job-loop-in">
                         <div class="row">
-                            <div class="col-md-3 col-sm-5 col-xs-5 full-wdth mg-btm-20 text-left jbm-first-col">
+                            <div class="col-md-4 col-sm-5 col-xs-5 full-wdth mg-btm-20 text-left jbm-first-col">
                                 <div class="jbm-company-logo"><img src="https://s.kaskus.id/r480x480/images/fjb/2015/04/16/jasa_pembuatan_desain_logo_perusahaan_murah_tidak_murahan_1157447_1429123045.JPG" width="75px" height="75px"></div>
                                 <div class="jbm-job-title">
                                     <a href="#" class="title-link">{{ $low->tbllowongan->title }}</a>
@@ -81,11 +81,10 @@
                                     <span>{{ $low->tbllowongan_type_mst->low_type_desc }}</span>
                                 </div>
                             </div>
-                            <div class="col-md-2 col-xs-12 col-xs-12">
+                            <div class="col-md-1 col-xs-12 col-xs-12">
                                 <div class="jbm-job-links">
-
                                     <div class="jbm-job-apply">
-                                        <a href="{{ route('job.show', $low->tbllowongan->lowongan_id) }}">Detail pekerjaan</a>
+                                            <a href="{{ route('job.show', $low->tbllowongan->lowongan_id) }}">Detail</a>
                                     </div>
                                 </div>
                             </div>
@@ -93,8 +92,10 @@
                     </div><!--jbm-job-loop-in-->
                 </div><!--jbm-job-loop-->
             @endforeach
+
         </div>
-                <div class="row margin-top-40 margin-bottom-50">
+
+        <div class="row margin-top-40 margin-bottom-50">
             <div class="col-xs-12 text-center">
                 {!! $lowongans->links() !!}
             </div>

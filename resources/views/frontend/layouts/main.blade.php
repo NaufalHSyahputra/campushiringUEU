@@ -15,6 +15,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend_assets/css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend_assets/css/color2.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend_assets/css/responsive.css') }}">
+    <style>
+    .swal2-popup {
+        font-size: 1.4rem !important;
+    }
+    </style>
     @yield('css')
 
 </head>
@@ -79,13 +84,13 @@
                         <nav class="jbm-menu-container">
                             <ul class="jbm-menu list-none dis-inline">
                                 <li>
-                                    <a href="#">Home</a>
+                                    <a href="{{ route('index') }}">Home</a>
                                 </li>
                                 <li>
                                     <a href="#">Profil</a>
                                 </li>
                                 <li>
-                                    <a href="#">Lowongan Pekerjaan</a>
+                                    <a href="{{ route('job.all') }}">Lowongan Pekerjaan</a>
                                 </li>
                                 <li>
                                     <a href="#">Prosedur <i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -380,13 +385,13 @@
             <div class="jbm-mobile-menu-wrap">
                 <ul class="jbm-mobile-menu">
                             <li>
-                                <a href="#">Home</a>
+                                <a href="{{ route('index') }}">Home</a>
                             </li>
                             <li>
                                 <a href="#">Profil</a>
                             </li>
                             <li>
-                                <a href="#">Lowongan Pekerjaan</a>
+                                <a href="{{ route('job.all') }}">Lowongan Pekerjaan</a>
                             </li>
                             <li class="mobile-hasmenu">
                                 <a href="#">Prosedur</a>
@@ -569,359 +574,6 @@
         </div>
     </div>
      <!-- Spinner end here -->
-
-
-    <div class="apply-job-popup">
-        <div class="popup-overlay"></div>
-        <!-- Candidate popup -->
-        <div class="popup">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="row">
-                        <div class="col-md-5 jbm-login-side applyy">
-                                <i class="fa fa-lightbulb-o margin-bottom-50" aria-hidden="true"></i>
-                                <span class="section-tit-line"></span>
-                                <h3 class="margin-bottom-60">Apply for Job</h3>
-                                <ul class="new-signup">
-                                    <li>
-                                        <a href="#">New User? </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Sign Up</a>
-                                    </li>
-                                </ul>
-
-                                <ul class="jbm-social-icons">
-                                    <li>
-                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                                    </li>
-                                </ul>
-                        </div>
-                        <div class="col-md-7 jbm-form">
-                            <div class="jbm-field margin-top-20 register">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="name" id="name4" class="form-control">
-                                        <label for="name4">First Name*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="last-name" id="last-name4" class="form-control">
-                                        <label for="last-name4">Last Name*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="email-address" id="email-address4" class="form-control">
-                                        <label for="email-address4">Email Address*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="number" id="number4" class="form-control">
-                                        <label for="number4">Phone Number*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                     <div class="form-group">
-                                        <textarea name="message" id="number5" class="form-control"></textarea>
-                                        <label for="number5">Message*</label>
-                                    </div>
-                                </div>
-                                <div class="g-recaptcha" data-sitekey="6LdcpCoUAAAAAH7ei-XX2bHUWul6Ppl5wYm1Y7Ne"></div>
-                                <a href="#" class="jbm-button jbm-button-3 jbm-hover margin-bottom-15   ">Apply for Job</a>
-                                <div class="terms">
-                                    <input type="checkbox" id="c1" name="cc">
-                                    <label for="c1"><span></span></label>
-                                    <small>I have read and agree with <a href="#">Terms & Conditions</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="close-btn">
-                            <i class="fa fa-close"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Candidate popup -->
-    </div><!--apply job popup end-->
-
-    <div class="jbm-login-popup">
-        <div class="popup-overlay"></div>
-        <div class="container">
-            <div class="popup">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="row">
-                            <div class="col-md-5 jbm-login-side">
-                                    <i class="fa fa-lightbulb-o margin-bottom-50" aria-hidden="true"></i>
-                                    <span class="section-tit-line"></span>
-                                    <h3 class="margin-bottom-60">Login</h3>
-                                    <ul>
-                                        <li>
-                                            <a href="#">Not yet registered? </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Register Here</a>
-                                        </li>
-                                    </ul>
-
-                                    <ul class="jbm-social-icons">
-                                        <li>
-                                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                            </div>
-                            <div class="col-md-7 jbm-form">
-                                <ul class="jbm-login-form padding-top-40">
-                                    <li class="candidate selected">
-                                        <a href="#">Candidate</a>
-                                    </li>
-                                    <li  class="employer">
-                                        <a href="#">Employer</a>
-                                    </li>
-                                </ul>
-                                <div class="jbm-field login-style margin-top-60">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" name="email-address" id="email-address" class="form-control">
-                                            <label for="email-address">Email Address*</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" name="new-pass" id="new-pass2" class="form-control">
-                                            <label for="new-pass2">Enter Password*</label>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="jbm-button jbm-button-3 jbm-hover margin-bottom-40 margin-top-20">Login</a>
-                                    <div class="row margin-bottom-70">
-                                        <div class="col-md-7">
-                                           <div class="terms style3">
-                                                <input type="checkbox" id="c4" name="cc">
-                                                <label for="c4"><span></span></label>
-                                                <small>Keep me logged in</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <a href="#" class="forgot">Forgot Password?</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="row margin-bottom-65">
-                                        <div class="col-md-5 or">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="jbm-or">
-                                                <span class="or">OR</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 or">
-                                        </div>
-                                    </div>
-
-                                    <div class="jbm-social-icons-2 style3">
-                                        <ul>
-                                            <li class="facebook">
-                                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                            </li>
-                                            <li class="google-plus">
-                                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                            </li>
-                                            <li class="twitter">
-                                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                            </li>
-                                            <li class="linkedin">
-                                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="close-btn">
-                                <i class="fa fa-close"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--jbm-login-popup end-->
-
-    <div class="jbm-can-register-popup">
-        <div class="popup-overlay"></div>
-        <div class="popup">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="row">
-                        <div class="col-md-5 jbm-login-side">
-                                <i class="fa fa-lightbulb-o margin-bottom-50" aria-hidden="true"></i>
-                                <span class="section-tit-line"></span>
-                                <h3 class="margin-bottom-60">Register</h3>
-                                <ul>
-                                    <li>
-                                        <a href="#">Already have an account? </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Login Here</a>
-                                    </li>
-                                </ul>
-
-                                <ul class="jbm-social-icons">
-                                    <li>
-                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                                    </li>
-                                </ul>
-                        </div>
-                        <div class="col-md-7 jbm-form regis">
-                            <ul class="jbm-login-form padding-top-30">
-                                <li class="candidate selected" data-tab="tab1">
-                                    <a href="#">Candidate</a>
-                                </li>
-                                <li class="employer" data-tab="tab2">
-                                    <a href="#">Employer</a>
-                                </li>
-                            </ul>
-                            <div class="jbm-field current margin-top-60 register" id="tab1">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="name" id="name" class="form-control">
-                                        <label for="name">First Name*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="last-name" id="last-name" class="form-control">
-                                        <label for="last-name">Last Name*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="email-address" id="email-address2" class="form-control">
-                                        <label for="email-address2">Email Address*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="new-pass" id="new-pass3" class="form-control">
-                                        <label for="new-pass3">Enter Password*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="confirm-pass" id="confirm-pass2" class="form-control">
-                                        <label for="confirm-pass2">Password Confirm*</label>
-                                    </div>
-                                </div>
-                                <img class="margin-top-10" src="{{ asset('frontend_assets/img/register-img.jpg') }}" alt="">
-                                <div class="jbm-cand-register">
-                                    <a href="#" class="jbm-button jbm-button-3 jbm-hover">Register</a>
-                                </div>
-                                <div class="terms style2">
-                                    <input type="checkbox" id="c5" name="cc">
-                                    <label for="c5"><span></span></label>
-                                    <small>I have read and agree with <a href="#">Terms & Conditions</a></small>
-                                </div>
-                            </div>
-                            <div class="jbm-field margin-top-60 register" id="tab2">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="com-name" id="com-name" class="form-control">
-                                        <label for="com-name">Company Name*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="address" id="address" class="form-control">
-                                        <label for="address">Company Address*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="email-address" id="email-address3" class="form-control">
-                                        <label for="email-address3">Email Address*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="new-pass" id="new-pass4" class="form-control">
-                                        <label for="new-pass4">Enter Password*</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="confirm-pass" id="confirm-pass3" class="form-control">
-                                        <label for="confirm-pass3">Password Confirm*</label>
-                                    </div>
-                                </div>
-                                <img class="margin-top-10" src="{{ asset('frontend_assets/img/register-img.jpg') }}" alt="">
-                                <div class="jbm-cand-register">
-                                    <a href="#" class="jbm-button jbm-button-3 jbm-hover">Register</a>
-                                </div>
-                                <div class="terms style2">
-                                    <input type="checkbox" id="c6" name="cc">
-                                    <label for="c6"><span></span></label>
-                                    <small>I have read and agree with <a href="#">Terms & Conditions</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="close-btn">
-                            <i class="fa fa-close"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--jbm-can-register-popup end-->
-
-
     <div class="jbm-overlay jbm-2nd-bg"></div>
     <!-- Scripts -->
     <script src="{{ asset('frontend_assets/js/jquery.min.js') }}"></script>
@@ -930,7 +582,7 @@
     <script src="{{ asset('frontend_assets/lib/slick/slick.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend_assets/lib/select2/js/select2.full.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend_assets/js/custom.js') }}" type="text/javascript"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    @include('sweetalert::alert')
     @yield('js')
 </body>
 

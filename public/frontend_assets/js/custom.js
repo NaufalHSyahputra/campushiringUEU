@@ -42,13 +42,12 @@ $(window).on("load", function() {
 	});
 
 	$('.form-control').on('blur',function() {
-	    if( $(this).val().length === 0 ) {
+	    if( $(this).val().length === 0 && !$(this).hasClass('always-active')) {
 	        $(this).closest('.form-group').removeClass('field-active');
 	    }else{
 	        $(this).closest('.form-group').addClass('field-active');
 	    }
 	});
-    // Tabs functionality in tabs
 
 	$('.jbm-form.regis ul li').on("click", function(){
 	    var tab_id = $(this).attr('data-tab');

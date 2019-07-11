@@ -8,7 +8,7 @@
                 <div class="jbm-banner-text text-center">
                     <div class="jbm-ban-txt-line-1">
                         <h1>
-                            MOBILE CAMPUS HIRING CAREER CENTER UNIVERSITAS ESA UNGGGUL
+                            CAMPUS HIRING CAREER CENTER UNIVERSITAS ESA UNGGGUL
                         </h1>
                     </div>
                     <div class="jbm-ban-txt-line-2">

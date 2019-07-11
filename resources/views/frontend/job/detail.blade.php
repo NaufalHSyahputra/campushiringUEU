@@ -7,6 +7,7 @@
             <div class="col-xs-12 text-center">
                 <span class="section-tit-line"></span>
                     <h2>{{ $lowongan->title }}</h2>
+                    <p><a href="#"><i class="fa fa-building" aria-hidden="true"></i></a> &nbsp; > &nbsp;<a href="#">{{ $lowongan->tblperusahaan->nama }}</a></p>
             </div>
         </div>
     </div>
@@ -16,11 +17,17 @@
 <div class="job-info padding-top-60">
 <div class="container">
     <div class="row margin-bottom-60">
+            @if (Auth::guest())
+    <div class="alert alert-danger">
+        <h2><b>Belum Login</b></h2><br>
+        <h4><p>Silahkan login terlebih dahulu untuk melamar pekerjaan. <a href="{{ route('login') }}">Login Disini!</a></p></h4>
+    </div>
+    @endif
         <div class="col-md-6 col-sm-12 col-xs-12 full-wdth">
             <!-- Left-aligned -->
                 <div class="media">
                   <div class="media-left">
-                    <img src="{{ $lowongan->tblperusahaan->logo_pic }}" alt="" class="media-object" />
+                    <img src="/imgs/perusahaan/{{ $lowongan->tblperusahaan->logo_pic }}" alt="" class="media-object" />
                   </div>
                   <div class="media-body style2">
                     <h6 class="media-heading style2">{{ $lowongan->title }}</h6>
@@ -29,7 +36,13 @@
         </div>
         <div class="col-md-6 col-sm-12 col-xs-12 full-wdth">
             <div class="candidate-bottom padding-top-30 text-right stl2">
-                <a href="#" class="jbm-button apply-btn jbm-button-3">Lamar Pekerjaan</a>
+                @if (Auth::guest())
+                    <button class="jbm-button apply-btn jbm-button-3" disabled>Belum Login</button>
+                @elseif (Auth::user()->tblmahasiswa == null)
+                    <button class="jbm-button apply-btn jbm-button-3" disabled>Bukan Mahasiswa</button>
+                @else
+                    <button class="jbm-button apply-btn jbm-button-3">Lamar Pekerjaan</button>
+                @endif
             </div>
         </div>
     </div>
@@ -59,7 +72,7 @@
                     <a href="#"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;{{ $lowongan->tbllowongan_detil->tblfakultas->fakultas_name }}</a>
                 </div>
                 <div class="col-md-4 margin-bottom-30">
-                    <a href="#"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;{{ $lowongan->tbllowongan_detil->salarymin }} - {{ $lowongan->tbllowongan_detil->salarymax }}</a>
+                    <a href="#"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;{{ $lowongan->tbllowongan_detil->salary_min }} - {{ $lowongan->tbllowongan_detil->salary_max }} @if ($lowongan->tbllowongan_detil->is_salary_nego == 1) "(Negotiable)" @endif</a>
                 </div>
                 <div class="col-md-4 margin-bottom-30">
                     <a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;{{ $lowongan->tbllowongan_detil->tbllowongan_type_mst->low_type_desc }}</a>
@@ -90,64 +103,6 @@
     </div>
 </div>
 <!-- Brief Description ends-->
-<!-- Best candidate -->
-<div class="jbm-section-title-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 margin-bottom-40">
-                <h4>Related Jobs</h4>
-                <span class="section-tit-line-2"></span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row  best-candidate-img">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="best-candidate-box text-center">
-                <img src="assets/img/blog-270x180-1.jpg" alt="blog-270x180" />
-                <span class="best-candi-time">Full Time</span>
-                <h5><a href="#">SEO Analyst</a></h5>
-                <a href="#" class="best-candi-posi">@ CompanyA</a>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="best-candidate-box text-center">
-                <img src="assets/img/blog-270x180-2.jpg" alt="blog-270x180" />
-                <span class="best-candi-time">Part Time</span>
-                <h5><a href="#">Affiliate Marketing</a></h5>
-                <a href="#" class="best-candi-posi">@ Companyb</a>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="best-candidate-box text-center">
-                <img src="assets/img/blog-270x180-3.jpg" alt="blog-270x180" />
-                <span class="best-candi-time">Internship</span>
-                <h5><a href="#">Content Writer</span></a></h5>
-                <a href="#" class="best-candi-posi">@ CompanyC</a>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="best-candidate-box text-center">
-                <img src="assets/img/blog-270x180-4.jpg" alt="blog-270x180" />
-                <span class="best-candi-time">Freelancer</span>
-                <h5><a href="#">Market Updates</span></a></h5>
-                <a href="#" class="best-candi-posi">@ CompanyD</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Best candidate ends-->
-
-<div class="jbm-ad-banner padding-bottom-100">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <img src="assets/img/ad-ban.jpg" alt="ad-ban" />
-            </div>
-        </div>
-    </div>
-</div>
 <!-- start section helpbox -->
 <div class="jbm-section-helpbox main-1st-bg padding-top-75 padding-bottom-100">
     <!-- start section title -->
@@ -165,6 +120,60 @@
     <!-- end section title -->
 </div>
 <!-- end section helpbox -->
+@if (Auth::user()->tblmahasiswa != null)
+<div class="apply-job-popup">
+    <div class="popup-overlay"></div>
+    <!-- Candidate popup -->
+    <div class="popup">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-md-5 jbm-login-side apply">
+                            <i class="fa fa-lightbulb-o margin-bottom-50" aria-hidden="true"></i>
+                            <span class="section-tit-line"></span>
+                            <h3 class="margin-bottom-60">Lamar Pekerjaan</h3>
+                            <ul class="new-signup">
+
+                                </ul>
+
+                                <ul class="jbm-social-icons">
+
+                                </ul>
+                    </div>
+                    <div class="col-md-7 jbm-form">
+                        <div class="jbm-field margin-top-20">
+                            <div class="alert alert-info"><strong>Informasi</strong><br>Anda akan melamar pekerjaan di : <br><b>{{ $lowongan->tblperusahaan->nama }}</b><br> Posisi: <b>{{ $lowongan->title }}</b><br>Setelah anda melamar pekerjaan ini, perusahaan ini dapat melihat data diri, dan dokumen anda seperti CV, Ijazah, dst</div>
+                            <form method="POST" action="{{ route('job.apply') }}" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="lowongan_id" value="{{ $lowongan->lowongan_id }}">
+                            <div class="col-md-12">
+                                 <div class="form-group">
+                                    <textarea name="mhs_desc" id="mhs_desc" class="form-control"></textarea>
+                                    <label for="mhs_desc">Pesan untuk Perusahaan (Ceritakan tentang diri anda)</label>
+                                </div>
+                            </div>
+                            @if ($lowongan->tbllowongan_detil->low_type_id == 3)
+                            <div class="col-md-12">
+                                    <div class="form-group field-active">
+                                       <input type="file" name="magang" id="magang" class="form-control always-active" accept="application/pdf">
+                                       <label for="number5">Surat Magang/Internship dari Fakultas (PDF)</label>
+                                   </div>
+                               </div>
+                            @endif
+                            <button type="submit" class="jbm-button jbm-button-3 jbm-hover margin-bottom-15">Lamar Pekerjaan</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="close-btn">
+                        <i class="fa fa-close"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Candidate popup -->
+</div><!--apply job popup end-->
+@endif
 @endsection
 @section('js')
 <script src="{{ asset('frontend_assets/js/chain.min.js') }}"></script>
