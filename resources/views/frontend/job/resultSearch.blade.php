@@ -46,7 +46,7 @@
                     <div class="jbm-job-loop-in">
                         <div class="row">
                             <div class="col-md-3 col-sm-5 col-xs-5 full-wdth mg-btm-20 text-left jbm-first-col">
-                                <div class="jbm-company-logo"><img src="https://s.kaskus.id/r480x480/images/fjb/2015/04/16/jasa_pembuatan_desain_logo_perusahaan_murah_tidak_murahan_1157447_1429123045.JPG" width="75px" height="75px"></div>
+                                <div class="jbm-company-logo"><img src="/imgs/perusahaan/{{ $low->tblperusahaan->tblperusahaan_detail->logo_pic }}" width="75px" height="75px"></div>
                                 <div class="jbm-job-title">
                                     <a href="#" class="title-link">{{ $low->tbllowongan->title }}</a>
                                     <br />
@@ -74,7 +74,7 @@
                                         <i class="fa fa-battery-full" aria-hidden="true"></i>
                                     @elseif ($low->low_type_id == 2)
                                         <i class="fa fa-battery-half" aria-hidden="true"></i>
-                                    @elseif ($low->low_type_id == 2)
+                                    @elseif ($low->low_type_id == 3)
                                         <i class="fa fa-battery-empty" aria-hidden="true"></i>
                                     @endif
                                     <br />

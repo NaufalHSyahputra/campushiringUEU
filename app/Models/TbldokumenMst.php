@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 03 Jul 2019 16:57:04 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:34 +0000.
  */
 
 namespace App\Models;
@@ -11,11 +11,11 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class TbldokumenMst
- * 
+ *
  * @property int $doc_id
  * @property string $doc_desc
  * @property int $is_mandatory
- * 
+ *
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswa_docs
  *
  * @package App\Models
@@ -35,7 +35,7 @@ class TbldokumenMst extends Eloquent
 		'is_mandatory'
 	];
 
-	public function tblmahasiswa_docs()
+	public function tblmahasiswa_doc()
 	{
 		return $this->hasMany(\App\Models\TblmahasiswaDoc::class, 'doc_id');
 	}

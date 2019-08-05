@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 03 Jul 2019 16:57:04 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:34 +0000.
  */
 
 namespace App\Models;
@@ -18,7 +18,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
- * @property \App\Models\Tblfakultas $tblfakultas
+ * @property \App\Models\tblfakultas $tblfakultas
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswas
  *
  * @package App\Models
@@ -39,10 +39,10 @@ class Tbljurusan extends Eloquent
 
 	public function tblfakultas()
 	{
-		return $this->belongsTo(\App\Models\Tblfakultas::class, 'fakultas_id');
+		return $this->belongsTo(\App\Models\tblfakultas::class, 'fakultas_id');
 	}
 
-	public function tblmahasiswas()
+	public function tblmahasiswa()
 	{
 		return $this->hasMany(\App\Models\Tblmahasiswa::class, 'jurusan_id');
 	}

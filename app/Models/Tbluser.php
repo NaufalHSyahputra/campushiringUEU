@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 08 Jul 2019 16:27:31 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:35 +0000.
  */
 
 namespace App\Models;
@@ -11,7 +11,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Tbluser
- * 
+ *
  * @property int $user_id
  * @property string $lgname
  * @property string $password
@@ -21,7 +21,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $email_verified_at
- * 
+ *
  * @property \Illuminate\Database\Eloquent\Collection $tblemployees
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswas
  * @property \Illuminate\Database\Eloquent\Collection $tblperusahaans
@@ -56,22 +56,22 @@ class Tbluser extends Eloquent
 		'email_verified_at'
 	];
 
-	public function tblemployees()
+	public function tblemployee()
 	{
 		return $this->hasMany(\App\Models\Tblemployee::class, 'user_id');
 	}
 
-	public function tblmahasiswas()
+	public function tblmahasiswa()
 	{
 		return $this->hasMany(\App\Models\Tblmahasiswa::class, 'user_id');
 	}
 
-	public function tblperusahaans()
+	public function tblperusahaan()
 	{
 		return $this->hasMany(\App\Models\Tblperusahaan::class, 'user_id');
 	}
 
-	public function tbluser_roles()
+	public function tbluser_role()
 	{
 		return $this->hasMany(\App\Models\TbluserRole::class, 'user_id');
 	}

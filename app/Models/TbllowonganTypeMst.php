@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 03 Jul 2019 16:57:05 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:35 +0000.
  */
 
 namespace App\Models;
@@ -15,7 +15,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $low_type_id
  * @property string $low_type_desc
  * 
- * @property \App\Models\TbllowonganDetil $tbllowongan_detil
+ * @property \App\Models\TbllowonganDetail $tbllowongan_detail
  *
  * @package App\Models
  */
@@ -29,8 +29,8 @@ class TbllowonganTypeMst extends Eloquent
 		'low_type_desc'
 	];
 
-	public function tbllowongan_detil()
+	public function tbllowongan_detail()
 	{
-		return $this->hasOne(\App\Models\TbllowonganDetil::class, 'low_type_id');
+		return $this->hasOne(\App\Models\TbllowonganDetail::class, 'low_type_id');
 	}
 }

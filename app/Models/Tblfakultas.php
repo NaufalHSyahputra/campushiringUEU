@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 04 Jul 2019 02:14:57 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:34 +0000.
  */
 
 namespace App\Models;
@@ -10,7 +10,7 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Tblfakultas
+ * Class tblfakultas
  *
  * @property int $fakultas_id
  * @property string $fakultas_name
@@ -19,31 +19,32 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $updated_at
  *
  * @property \Illuminate\Database\Eloquent\Collection $tbljurusans
- * @property \App\Models\TbllowonganDetil $tbllowongan_detil
+ * @property \App\Models\TbllowonganDetail $tbllowongan_detail
  * @property \Illuminate\Database\Eloquent\Collection $tblskills
  *
  * @package App\Models
  */
 class Tblfakultas extends Eloquent
 {
-	protected $primaryKey = 'fakultas_id';
+    protected $primaryKey = 'fakultas_id';
+    protected $table = 'tblfakultas';
 
 	protected $fillable = [
 		'fakultas_name',
 		'icon'
 	];
 
-	public function tbljurusans()
+	public function tbljurusan()
 	{
 		return $this->hasMany(\App\Models\Tbljurusan::class, 'fakultas_id');
 	}
 
-	public function tbllowongan_detil()
+	public function tbllowongan_detail()
 	{
-		return $this->hasOne(\App\Models\TbllowonganDetil::class, 'fakultas_id');
+		return $this->hasOne(\App\Models\TbllowonganDetail::class, 'fakultas_id');
 	}
 
-	public function tblskills()
+	public function tblskill()
 	{
 		return $this->hasMany(\App\Models\Tblskill::class, 'fakultas_id');
 	}

@@ -1,9 +1,9 @@
 <aside id="sidebar-wrapper">
   <div class="sidebar-brand">
-    <a href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
+    <a href="{{ route('home') }}">Campus Hiring Esa Unggul</a>
   </div>
   <div class="sidebar-brand sidebar-brand-sm">
-    <a href="index.html">St</a>
+    <a href="index.html">CH UEU</a>
   </div>
   <ul class="sidebar-menu">
     <li class="menu-header">Dashboard</li>

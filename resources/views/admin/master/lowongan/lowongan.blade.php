@@ -5,7 +5,8 @@
 @section('title-section', 'Master Lowongan')
 
 @section('css')
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset("admin_assets/modules/summernote/summernote-bs4.css") }}">
+<link rel="stylesheet" href="{{ asset("admin_assets/modules/bootstrap-daterangepicker/daterangepicker.css") }}">
 @endsection
 @section('content')
 <div class="card">
@@ -23,10 +24,11 @@
                             <th>Lowongan ID</th>
                             <th>Perusahaan</th>
                             <th>Title</th>
-                            <th>Deskripsi</th>
                             <th>Status Aktif</th>
                             <th>Tanggal Aktif</th>
                             <th>Status Approval</th>
+                            <th>Tanggal Approval</th>
+                            <th>Diapprove oleh</th>
                             <th>Durasi Lowongan</th>
                             <th>Aksi</th>
                         </tr>
@@ -74,10 +76,10 @@
                         </div>
                         <div class="form-group">
                             <label for="active_date">Tanggal Aktif</label>
-                            <input type="text" class="form-control" name="active_date">
+                            <input type="text" class="form-control datetimepicker" name="active_date">
                         </div>
                         <div class="form-group">
-                            <label for="is_approved">Status Aktif</label>
+                            <label for="is_approved">Status Approval</label>
                             <select name="is_approved" id="is_approved" class="form-control">
                                 <option value="1">Approved</option>
                                 <option value="0">Menunggu Approval</option>
@@ -85,14 +87,68 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="active_date">Tanggal Approval</label>
-                            <input type="text" class="form-control" name="active_date">
+                            <label for="approved_date">Tanggal Approval</label>
+                            <input type="text" class="form-control" name="approved_date">
                         </div>
+                        <div class="form-group">
+                            <label for="approved_date">Diapprove oleh</label>
+                            <input type="text" name="approved_by" id="approved_by" class="form-control">
+                        </div>
+
                         <div class="form-group">
                             <label for="duration">Durasi</label>
                             <select name="duration" id="duration" class="form-control">
                                 <option value="2">2 Minggu</option>
                                 <option value="4">1 Bulan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="kota_id">Kota</label>
+                            <select name="kota_id" id="kota_id" class="form-control">
+                                @foreach ($kotas as $kota)
+                                <option value="{{ $kota->kota_id }}">{{ $kota->kota_nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="low_type_id">Tipe Lowongan</label>
+                            <select name="low_type_id" id="low_type_id" class="form-control">
+                                @foreach ($lowtypes as $low_type)
+                                <option value="{{ $low_type->low_type_id }}">{{ $low_type->low_type_desc }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fakultas_id">Fakultas</label>
+                            <select name="fakultas_id" id="fakultas_id" class="form-control">
+                                @foreach ($fakultass as $fakultas)
+                                    <option value="{{ $fakultas->fakultas_id }}">{{ $fakultas->fakultas_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="skill_id">Skill</label>
+                            <select name="skill_id" id="skill_id" class="form-control">
+                                @foreach ($skills as $skill)
+                                    <option value="{{ $skill->skill_id }}" class="{{ $skill->fakultas_id }}">{{ $skill->skill_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="salary_min">Gaji Minimal</label>
+                              <input type="number" class="form-control" id="salary_min" name="salary_min" placeholder="Gaji Minimal">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="salary_max">Gaji Maksimal</label>
+                              <input type="number" class="form-control" id="salary_max" name="salary_max" placeholder="Gaji Maksimal">
+                            </div>
+                          </div>
+                        <div class="form-group">
+                            <label for="is_salary_nego">Gaji negotiable</label>
+                            <select name="is_salary_nego" id="is_salary_nego" class="form-control">
+                                <option value="0">Tidak</option>
+                                <option value="1">Ya</option>
                             </select>
                         </div>
                     </div>
@@ -118,51 +174,104 @@
                     <div class="modal-body">
                         @csrf
                         <div class="form-group">
-                                <label for="title">Perusahaan</label>
-                                <select name="perusahaan_id" id="perusahaan_id_edit" class="form-control">
-                                    @foreach ($prs as $pr)
-                                        <option value="{{ $pr->perusahaan_id }}">{{ $pr->nama }}</option>
-                                    @endforeach
-                                </select>
+                            <label for="title">Perusahaan</label>
+                            <select name="perusahaan_id" id="perusahaan_id_edit" class="form-control">
+                                @foreach ($prs as $pr)
+                                    <option value="{{ $pr->perusahaan_id }}">{{ $pr->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" id="title_edit">
+                        </div>
+                        <div class="form-group">
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea id="deskripsi_edit" name="deskripsi" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="is_active">Status Aktif</label>
+                            <select name="is_active" id="is_active_edit" class="form-control">
+                                <option value="1">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="active_date">Tanggal Aktif</label>
+                            <input type="date" class="form-control" name="active_date" id="active_date_edit">
+                        </div>
+                        <div class="form-group">
+                            <label for="is_approved">Status Approval</label>
+                            <select name="is_approved" id="is_approved_edit" class="form-control">
+                                <option value="1">Approved</option>
+                                <option value="0">Menunggu Approval</option>
+                                <option value="-1">Rejected</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="approved_date">Tanggal Approval</label>
+                            <input type="text" class="form-control" name="approved_date" id="approved_date_edit">
+                        </div>
+                        <div class="form-group">
+                            <label for="approved_date">Diapprove oleh</label>
+                            <input type="text" name="approved_by" id="approved_by_edit" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Durasi</label>
+                            <select name="duration" id="duration_edit" class="form-control">
+                                <option value="2">2 Minggu</option>
+                                <option value="4">1 Bulan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="kota_id">Kota</label>
+                            <select name="kota_id" id="kota_id_edit" class="form-control">
+                                @foreach ($kotas as $kota)
+                                <option value="{{ $kota->kota_id }}">{{ $kota->kota_nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="low_type_id">Tipe Lowongan</label>
+                            <select name="low_type_id" id="low_type_id_edit" class="form-control">
+                                @foreach ($lowtypes as $low_type)
+                                <option value="{{ $low_type->low_type_id }}">{{ $low_type->low_type_desc }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fakultas_id">Fakultas</label>
+                            <select name="fakultas_id" id="fakultas_id_edit" class="form-control">
+                                @foreach ($fakultass as $fakultas)
+                                    <option value="{{ $fakultas->fakultas_id }}">{{ $fakultas->fakultas_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="skill_id">Skill</label>
+                            <select name="skill_id" id="skill_id_edit" class="form-control">
+                                @foreach ($skills as $skill)
+                                    <option value="{{ $skill->skill_id }}" class="{{ $skill->fakultas_id }}">{{ $skill->skill_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="salary_min">Gaji Minimal</label>
+                              <input type="number" class="form-control" id="salary_min_edit" name="salary_min" placeholder="Gaji Minimal">
                             </div>
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" class="form-control" name="title" id="title_edit">
+                            <div class="form-group col-md-6">
+                              <label for="salary_max">Gaji Maksimal</label>
+                              <input type="number" class="form-control" id="salary_max_edit" name="salary_max" placeholder="Gaji Maksimal">
                             </div>
-                            <div class="form-group">
-                                <label for="deskripsi">Deskripsi</label>
-                                <textarea id="deskripsi_edit" name="deskripsi" class="form-control"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="is_active">Status Aktif</label>
-                                <select name="is_active" id="is_active_edit" class="form-control">
-                                    <option value="1">Aktif</option>
-                                    <option value="0">Tidak Aktif</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="active_date">Tanggal Aktif</label>
-                                <input type="text" class="form-control" name="active_date" id="active_date_edit">
-                            </div>
-                            <div class="form-group">
-                                <label for="is_approved">Status Aktif</label>
-                                <select name="is_approved" id="is_approved_edit" class="form-control">
-                                    <option value="1">Approved</option>
-                                    <option value="0">Menunggu Approval</option>
-                                    <option value="-1">Rejected</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="active_date">Tanggal Approval</label>
-                                <input type="text" class="form-control" name="active_date" id="active_date_edit">
-                            </div>
-                            <div class="form-group">
-                                <label for="duration">Durasi</label>
-                                <select name="duration" id="duration_edit" class="form-control">
-                                    <option value="2">2 Minggu</option>
-                                    <option value="4">1 Bulan</option>
-                                </select>
-                            </div>
+                          </div>
+                        <div class="form-group">
+                            <label for="is_salary_nego">Gaji negotiable</label>
+                            <select name="is_salary_nego" id="is_salary_nego_edit" class="form-control">
+                                <option value="0">Tidak</option>
+                                <option value="1">Ya</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -174,8 +283,22 @@
     </div>
 @endsection
 @section('js')
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+<script src="{{ asset('admin_assets/modules/summernote/summernote-bs4.js') }}"></script>
+<script src="{{ asset('admin_assets/js/chain.min.js') }}"></script>
+<script src="{{ asset('admin_assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script>
+var skillCopy = $("#skill_id_edit").clone();
+$('.datetimepicker').daterangepicker({
+        parentEl: "#addModal .modal-body",
+        locale: {format: 'YYYY-MM-DD hh:mm:ss'},
+        singleDatePicker: true,
+        timePicker: true,
+        timePicker24Hour: true,
+        timePickerSeconds: true
+});
+$(function () {
+$("#skill_id").chained("#fakultas_id");
+$("#skill_id_edit").chained("#fakultas_id_edit");
 $('#deskripsi').summernote();
 $('#deskripsi_edit').summernote();
 $('#table-1').dataTable({
@@ -185,35 +308,39 @@ $('#table-1').dataTable({
     ajax: "{{ route('admin.master.lowongan.getdata') }}",
     columns: [{
             data: 'lowongan_id',
-            name: 'lowongan_id'
+            name: 'tbllowongan.lowongan_id'
         },
         {
-            data: 'perusahaan_id',
-            name: 'perusahaan_id'
+            data: 'nama',
+            name: 'tblperusahaan.nama'
         },
         {
             data: 'title',
-            name: 'title'
-        },
-        {
-            data: 'deskripsi',
-            name: 'deskripsi'
+            name: 'tbllowongan.title'
         },
         {
             data: 'is_active',
-            name: 'is_active'
+            name: 'tbllowongan.is_active'
         },
         {
             data: 'active_date',
-            name: 'active_date'
+            name: 'tbllowongan.active_date'
         },
         {
             data: 'is_approved',
-            name: 'is_approved'
+            name: 'tbllowongan.is_approved'
+        },
+        {
+            data: 'approved_date',
+            name: 'tbllowongan.approved_date'
+        },
+        {
+            data: 'approved_by',
+            name: 'tbllowongan.approved_by'
         },
         {
             data: 'duration',
-            name: 'duration'
+            name: 'tbllowongan.duration'
         },
         {
             data: 'action',
@@ -223,12 +350,27 @@ $('#table-1').dataTable({
         }
     ],
 });
+});
 $(document).on("click", ".editbutton", function() {
     let data_id = $(this).attr('data-id');
     $.get('/admin/master/lowongan/get/' + data_id, function(data) {
-        $("#doc_id_edit").val(data.doc_id);
-        $('#doc_desc_edit').val(data.doc_desc);
-        $('#is_mandatory_edit').val(data.is_mandatory);
+        console.log(data);
+        $('#fakultas_id_edit').unbind('change');
+        $('#skill_id_edit').html(skillCopy.html());
+        $("#skill_id_edit").val(data.tbllowongan_detail.skill_id);
+        $('#fakultas_id_edit').val(data.tbllowongan_detail.fakultas_id);
+        $('#kota_id_edit').val(data.tbllowongan_detail.kota_id);
+        $('#salary_min_edit').val(data.tbllowongan_detail.salary_min);
+        $('#salary_max_edit').val(data.tbllowongan_detail.salary_max);
+        $('#is_salary_nego_edit').val(data.tbllowongan_detail.is_salary_nego);
+        $("#perusahaan_id_edit").val(data.perusahaan_id);
+        $("#title_edit").val(data.title);
+        $('#is_active_edit option[value="' + data.is_active + '"]').prop('selected', true);
+        $("#active_date_edit").val(data.active_date);
+        $('#is_approved_edit option[value="' + data.is_approved + '"]').prop('selected', true);
+        $("#approved_date_edit").val(data.approved_date);
+        $("#approved_by_edit").val(data.approved_by);
+        $('#duration_edit option[value="' + data.duration + '"]').prop('selected', true);
         $("#editModal").modal('show');
     });
 });

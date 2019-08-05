@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 03 Jul 2019 16:57:05 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:35 +0000.
  */
 
 namespace App\Models;
@@ -11,14 +11,14 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class TbllowonganRequest
- * 
+ *
  * @property int $low_req_id
  * @property int $lowongan_id
  * @property int $is_approved
  * @property \Carbon\Carbon $approved_date
  * @property string $approved_by
  * @property string $notes
- * 
+ *
  * @property \App\Models\Tbllowongan $tbllowongan
  * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_docs
  *
@@ -52,7 +52,7 @@ class TbllowonganRequest extends Eloquent
 		return $this->belongsTo(\App\Models\Tbllowongan::class, 'lowongan_id');
 	}
 
-	public function tbllowongan_req_docs()
+	public function tbllowongan_req_doc()
 	{
 		return $this->hasMany(\App\Models\TbllowonganReqDoc::class, 'low_req_id');
 	}

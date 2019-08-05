@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 03 Jul 2019 16:57:05 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:35 +0000.
  */
 
 namespace App\Models;
@@ -37,12 +37,12 @@ class Tblprovinsi extends Eloquent
 		return $this->hasMany(\App\Models\Tblkota::class, 'prov_id');
 	}
 
-	public function tblmahasiswas()
+	public function tblmahasiswa()
 	{
 		return $this->hasMany(\App\Models\Tblmahasiswa::class, 'prov_id');
 	}
 
-	public function tblperusahaans()
+	public function tblperusahaan()
 	{
 		return $this->hasMany(\App\Models\Tblperusahaan::class, 'prov_id');
 	}

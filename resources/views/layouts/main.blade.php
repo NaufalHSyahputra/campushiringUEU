@@ -37,7 +37,9 @@
                 <h1>@yield('title-section')</h1>
             </div>
         <div class="section-body">
-            @include('layouts.partials.panel-role')
+            @if (Auth::user()->tbluser_roles->role_id == 3 )
+                @include('layouts.partials.panel-perusahaan')
+            @endif
             @yield('content')
         </div>
         </section>

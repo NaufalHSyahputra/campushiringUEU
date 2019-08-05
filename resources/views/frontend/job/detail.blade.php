@@ -27,7 +27,7 @@
             <!-- Left-aligned -->
                 <div class="media">
                   <div class="media-left">
-                    <img src="/imgs/perusahaan/{{ $lowongan->tblperusahaan->logo_pic }}" alt="" class="media-object" />
+                    <img src="/imgs/perusahaan/{{ $lowongan->tblperusahaan->tblperusahaan_detail->logo_pic }}" alt="" class="media-object" width="100px" height="100px"/>
                   </div>
                   <div class="media-body style2">
                     <h6 class="media-heading style2">{{ $lowongan->title }}</h6>
@@ -55,28 +55,31 @@
         <div class="candidate-personal-info jbm-relative jbm-accordion">
             <div class="row">
                 <div class="col-md-4 margin-bottom-30">
-                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{ $lowongan->tbllowongan_detil->tblkota->kota_nama }}</a>
+                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;Lokasi: {{ $lowongan->tbllowongan_detail->tblkota->kota_nama }}</a>
                 </div>
                 <div class="col-md-4 margin-bottom-30">
-                    <a href="#"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;{{ $lowongan->tblperusahaan->nama }}</a>
+                    <a href="#"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;Perusahaan: {{ $lowongan->tblperusahaan->nama }}</a>
                 </div>
                 <div class="col-md-4 margin-bottom-30">
-                    <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;{{ $lowongan->tblperusahaan->email }}</a>
+                    <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Email: {{ $lowongan->tblperusahaan->tblperusahaan_detail->pic_email }}</a>
                 </div>
             </div>
             <div class="row jbm-dis-none candidate-personal-detail jbm-accordion-more">
                 <div class="col-md-4 margin-bottom-30">
-                    <a href="#"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{ $lowongan->tblperusahaan->phone_number }}</a>
+                    <a href="#"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;Nomor Telepon: {{ $lowongan->tblperusahaan->tblperusahaan_detail->phone_number }}</a>
                 </div>
                 <div class="col-md-4 margin-bottom-30">
-                    <a href="#"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;{{ $lowongan->tbllowongan_detil->tblfakultas->fakultas_name }}</a>
+                    <a href="#"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;Fakultas: {{ $lowongan->tbllowongan_detail->tblfakultas->fakultas_name }}</a>
                 </div>
                 <div class="col-md-4 margin-bottom-30">
-                    <a href="#"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;{{ $lowongan->tbllowongan_detil->salary_min }} - {{ $lowongan->tbllowongan_detil->salary_max }} @if ($lowongan->tbllowongan_detil->is_salary_nego == 1) "(Negotiable)" @endif</a>
+                    <a href="#"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;Gaji: Rp. {{ number_format($lowongan->tbllowongan_detail->salary_min,0, ',' , '.') }} - Rp. {{ number_format($lowongan->tbllowongan_detail->salary_max,0, ',' , '.') }} @if ($lowongan->tbllowongan_detail->is_salary_nego == 1) "(Negotiable)" @endif</a>
                 </div>
                 <div class="col-md-4 margin-bottom-30">
-                    <a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;{{ $lowongan->tbllowongan_detil->tbllowongan_type_mst->low_type_desc }}</a>
+                    <a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;Tipe: {{ $lowongan->tbllowongan_detail->tbllowongan_type_mst->low_type_desc }}</a>
                 </div>
+                <div class="col-md-4 margin-bottom-30">
+                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Aktif sampai: {{ date('Y-m-d', strtotime($lowongan->expired_date)) }}</a>
+                    </div>
             </div>
             <a href="#" class="expand-candi-info">
                 <i class="fa fa-plus"  aria-hidden="true"></i>
@@ -93,10 +96,10 @@
             <div class="col-xs-12">
                 <div class="jbm-job-content">
                     <h5>Profil Perusahaan</h5>
-                    {!! nl2br($lowongan->tblperusahaan->deskripsi) !!}
+                    <p>{!! nl2br($lowongan->tblperusahaan->tblperusahaan_detail->deskripsi) !!}</p>
                     <br>
                     <h5>Job Description</h5>
-                    {!! nl2br($lowongan->deskripsi) !!}
+                    <p>{!! nl2br($lowongan->deskripsi) !!}</p>
                 </div>
             </div>
         </div>
@@ -111,8 +114,8 @@
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <span class="section-tit-line"></span>
-                    <h2 class="white"><span class="fw-400">Need Some</span>  Help?</h2>
-                    <p>Feel free to visit our <a href="faqs.html">FAQ section</a>. You can also send us an email <a href="contact-us.html">here</a> or give us a call on (123) 123 456 7890.</p>
+                    <h2 class="white"><span class="fw-400">Butuh</span>  Bantuan?</h2>
+                    <p>Silahkan kontak kami dengan menekan <a href="contact-us.html">link ini</a>.</p>
                 </div>
             </div>
         </div>
@@ -149,10 +152,10 @@
                             <div class="col-md-12">
                                  <div class="form-group">
                                     <textarea name="mhs_desc" id="mhs_desc" class="form-control"></textarea>
-                                    <label for="mhs_desc">Pesan untuk Perusahaan (Ceritakan tentang diri anda)</label>
+                                    <label for="mhs_desc">Promosikan diri anda</label>
                                 </div>
                             </div>
-                            @if ($lowongan->tbllowongan_detil->low_type_id == 3)
+                            @if ($lowongan->tbllowongan_detail->low_type_id == 3)
                             <div class="col-md-12">
                                     <div class="form-group field-active">
                                        <input type="file" name="magang" id="magang" class="form-control always-active" accept="application/pdf">

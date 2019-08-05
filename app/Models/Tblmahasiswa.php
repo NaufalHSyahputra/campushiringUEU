@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 08 Jul 2019 16:27:43 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:35 +0000.
  */
 
 namespace App\Models;
@@ -11,32 +11,23 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Tblmahasiswa
- * 
+ *
  * @property int $mahasiswa_id
  * @property int $user_id
  * @property int $jurusan_id
  * @property string $prov_id
  * @property string $kota_id
- * @property string $nim
- * @property string $nik
- * @property string $nama
- * @property string $tahun_ajaran
- * @property string $alamat
- * @property string $nohp
- * @property string $email
- * @property string $gender
  * @property int $is_approved
  * @property int $is_lulus
- * @property string $tahun_lulus
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * 
+ *
  * @property \App\Models\Tbljurusan $tbljurusan
  * @property \App\Models\Tblkotum $tblkotum
  * @property \App\Models\Tblprovinsi $tblprovinsi
  * @property \App\Models\Tbluser $tbluser
  * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_mhs
- * @property \App\Models\TbllowonganMhsDoc $tbllowongan_mhs_doc
+ * @property \App\Models\TblmahasiswaDetail $tblmahasiswa_detail
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswa_docs
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswa_requests
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswa_skills
@@ -60,17 +51,8 @@ class Tblmahasiswa extends Eloquent
 		'jurusan_id',
 		'prov_id',
 		'kota_id',
-		'nim',
-		'nik',
-		'nama',
-		'tahun_ajaran',
-		'alamat',
-		'nohp',
-		'email',
-		'gender',
 		'is_approved',
-		'is_lulus',
-		'tahun_lulus'
+		'is_lulus'
 	];
 
 	public function tbljurusan()
@@ -78,9 +60,9 @@ class Tblmahasiswa extends Eloquent
 		return $this->belongsTo(\App\Models\Tbljurusan::class, 'jurusan_id');
 	}
 
-	public function tblkotum()
+	public function tblkota()
 	{
-		return $this->belongsTo(\App\Models\Tblkotum::class, 'kota_id');
+		return $this->belongsTo(\App\Models\Tblkota::class, 'kota_id');
 	}
 
 	public function tblprovinsi()
@@ -98,22 +80,22 @@ class Tblmahasiswa extends Eloquent
 		return $this->hasMany(\App\Models\TbllowonganMh::class, 'mahasiswa_id');
 	}
 
-	public function tbllowongan_mhs_doc()
+	public function tblmahasiswa_detail()
 	{
-		return $this->hasOne(\App\Models\TbllowonganMhsDoc::class, 'mahasiswa_id');
+		return $this->hasOne(\App\Models\TblmahasiswaDetail::class, 'mahasiswa_id');
 	}
 
-	public function tblmahasiswa_docs()
+	public function tblmahasiswa_doc()
 	{
 		return $this->hasMany(\App\Models\TblmahasiswaDoc::class, 'mahasiswa_id');
 	}
 
-	public function tblmahasiswa_requests()
+	public function tblmahasiswa_request()
 	{
 		return $this->hasMany(\App\Models\TblmahasiswaRequest::class, 'mahasiswa_id');
 	}
 
-	public function tblmahasiswa_skills()
+	public function tblmahasiswa_skill()
 	{
 		return $this->hasMany(\App\Models\TblmahasiswaSkill::class, 'mahasiswa_id');
 	}

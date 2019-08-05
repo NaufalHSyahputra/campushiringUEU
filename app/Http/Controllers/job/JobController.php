@@ -38,7 +38,7 @@ class JobController extends Controller
         $fakultass = Tblfakultas::all();
         $skills = Tblskill::all();
         $levels = TbllowonganTypeMst::all();
-        $lowongans = TbllowonganDetil::paginate(5);
+        $lowongans = Tbllowongan::where("is_approved", 1)->where("expired_date", ">", Carbon::now())->paginate(5);
         return view('frontend.job.all', ['kotas' => $kotas, 'fakultass' => $fakultass, 'skills' => $skills, 'levels' => $levels,'lowongans' => $lowongans]);
     }
 
@@ -54,21 +54,24 @@ class JobController extends Controller
                 if ($mahasiswa->tblmahasiswa_docs->count() == 0){
                     return redirect()->back()->withError('Anda belum mengunggah dokumen');
                 }else{
-                    if ($lowongan->tbllowongan_detil->low_type_id != 3) {
-                        TbllowonganMhs::create([
+                    if ($mahasiswa->is_approved == 0) {
+                        return redirect()->back()->withError('Akun anda belum di approve');
+                    } else {
+                        if ($lowongan->tbllowongan_detail->low_type_id != 3) {
+                            TbllowonganMhs::create([
                             'mahasiswa_id' => $mahasiswa->mahasiswa_id,
                             'lowongan_id' => $request->input('lowongan_id'),
                             'apply_dates' => Carbon::now(),
                             'is_respond' => 0,
                             'mhs_desc' => $request->input('mhs_desc')
                         ]);
-                        return redirect()->back()->withSuccess('Anda berhasil melamar pekerjaan di lowongan ini, silahkan tunggu tanggapan dari perusahaan.');
-                    } else {
-                        if ($request->has('magang')){
-                            $image = $request->file('magang');
-                            $name = $mahasiswa->mahasiswa_id.'_SuratMagang.'.$image->getClientOriginalExtension();
-                            $image->move(public_path().'/imgs/lowongan/magang/', $name);
-                            TbllowonganMhs::create([
+                            return redirect()->back()->withSuccess('Anda berhasil melamar pekerjaan di lowongan ini, silahkan tunggu tanggapan dari perusahaan.');
+                        } else {
+                            if ($request->has('magang')) {
+                                $image = $request->file('magang');
+                                $name = $mahasiswa->mahasiswa_id.'_SuratMagang.'.$image->getClientOriginalExtension();
+                                $image->move(public_path().'/imgs/lowongan/magang/', $name);
+                                TbllowonganMhs::create([
                                 'mahasiswa_id' => $mahasiswa->mahasiswa_id,
                                 'lowongan_id' => $request->input('lowongan_id'),
                                 'apply_dates' => Carbon::now(),
@@ -76,9 +79,10 @@ class JobController extends Controller
                                 'mhs_desc' => $request->input('mhs_desc'),
                                 'mhs_magang_doc' => $name
                             ]);
-                            return redirect()->back()->withSuccess('Anda berhasil melamar magang/internship di lowongan ini, silahkan tunggu tanggapan dari perusahaan.');
-                        }else{
-                            return redirect()->back()->withSuccess('Surat Magang/Intership dari Fakultas wajib diunggah');
+                                return redirect()->back()->withSuccess('Anda berhasil melamar magang/internship di lowongan ini, silahkan tunggu tanggapan dari perusahaan.');
+                            } else {
+                                return redirect()->back()->withSuccess('Surat Magang/Intership dari Fakultas wajib diunggah');
+                            }
                         }
                     }
                 }

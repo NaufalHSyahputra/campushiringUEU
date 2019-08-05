@@ -7,7 +7,7 @@ use App\Models\Tblskill;
 use App\Models\Tblfakultas;
 use App\Models\Tbllowongan;
 use Illuminate\Http\Request;
-use App\Models\TbllowonganDetil;
+use App\Models\TbllowonganDetail;
 use App\Models\TbllowonganTypeMst;
 
 class FrontHomeController extends Controller
@@ -17,7 +17,7 @@ class FrontHomeController extends Controller
         $fakultass = Tblfakultas::all();
         $skills = Tblskill::all();
         $levels = TbllowonganTypeMst::all();
-        $lowongans = TbllowonganDetil::filter($request->all())->paginateFilter(5);
+        $lowongans = TbllowonganDetail::filter($request->all())->paginateFilter(5);
         return view('frontend.job.resultSearch', ['kotas' => $kotas, 'fakultass' => $fakultass, 'skills' => $skills, 'levels' => $levels,'lowongans' => $lowongans]);
     }
 

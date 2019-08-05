@@ -2,7 +2,7 @@
 
 use EloquentFilter\ModelFilter;
 
-class TbllowonganDetilFilter extends ModelFilter
+class TbllowonganDetailFilter extends ModelFilter
 {
     /**
     * Related Models that have ModelFilters as well as the method on the ModelFilter
@@ -11,6 +11,11 @@ class TbllowonganDetilFilter extends ModelFilter
     * @var array
     */
     public $relations = ['tbllowongan' => ['title']];
+
+    public function tbllowonganSetup($query)
+    {
+        return $query->LowonganActive();
+    }
 
     public function gajiMin($gaji){
         return $this->where('salary_min', '>=', $gaji);

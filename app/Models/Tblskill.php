@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 04 Jul 2019 02:15:02 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:35 +0000.
  */
 
 namespace App\Models;
@@ -18,8 +18,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
- * @property \App\Models\Tblfakultas $tblfakultas
- * @property \App\Models\TbllowonganDetil $tbllowongan_detil
+ * @property \App\Models\tblfakultas $tblfakultas
+ * @property \App\Models\TbllowonganDetail $tbllowongan_detail
  * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswa_skills
  *
  * @package App\Models
@@ -40,15 +40,15 @@ class Tblskill extends Eloquent
 
 	public function tblfakultas()
 	{
-		return $this->belongsTo(\App\Models\Tblfakultas::class, 'fakultas_id');
+		return $this->belongsTo(\App\Models\Tblfakulta::class, 'fakultas_id');
 	}
 
-	public function tbllowongan_detil()
+	public function tbllowongan_detail()
 	{
-		return $this->hasOne(\App\Models\TbllowonganDetil::class, 'skill_id');
+		return $this->hasOne(\App\Models\TbllowonganDetail::class, 'skill_id');
 	}
 
-	public function tblmahasiswa_skills()
+	public function tblmahasiswa_skill()
 	{
 		return $this->hasMany(\App\Models\TblmahasiswaSkill::class, 'skill_id');
 	}

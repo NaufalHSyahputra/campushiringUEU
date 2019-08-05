@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 04 Jul 2019 02:14:12 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:34 +0000.
  */
 
 namespace App\Models;
@@ -11,7 +11,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 use EloquentFilter\Filterable;
 
 /**
- * Class TbllowonganDetil
+ * Class TbllowonganDetail
  *
  * @property int $lowongan_id
  * @property string $kota_id
@@ -23,19 +23,20 @@ use EloquentFilter\Filterable;
  * @property int $is_salary_nego
  *
  * @property \App\Models\Tbllowongan $tbllowongan
- * @property \App\Models\Tblkota $tblkota
+ * @property \App\Models\Tblkotum $tblkotum
  * @property \App\Models\TbllowonganTypeMst $tbllowongan_type_mst
  * @property \App\Models\Tblskill $tblskill
- * @property \App\Models\Tblfakultas $tblfakultas
+ * @property \App\Models\tblfakultas $tblfakultas
  *
  * @package App\Models
  */
-class TbllowonganDetil extends Eloquent
+class TbllowonganDetail extends Eloquent
 {
     use Filterable;
-	protected $table = 'tbllowongan_detil';
+
+	protected $table = 'tbllowongan_detail';
 	public $incrementing = false;
-    public $timestamps = false;
+	public $timestamps = false;
 
 	protected $casts = [
 		'lowongan_id' => 'int',
@@ -80,6 +81,6 @@ class TbllowonganDetil extends Eloquent
 
 	public function tblfakultas()
 	{
-		return $this->belongsTo(\App\Models\Tblfakultas::class, 'fakultas_id');
+		return $this->belongsTo(\App\Models\tblfakultas::class, 'fakultas_id');
 	}
 }

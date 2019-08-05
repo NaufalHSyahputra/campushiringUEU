@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 03 Jul 2019 16:57:05 +0000.
+ * Date: Mon, 15 Jul 2019 12:30:34 +0000.
  */
 
 namespace App\Models;
@@ -20,6 +20,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $respond_notes
  * @property \Carbon\Carbon $respond_date
  * @property string $mhs_desc
+ * @property string $mhs_magang_doc
  *
  * @property \App\Models\Tbllowongan $tbllowongan
  * @property \App\Models\Tblmahasiswa $tblmahasiswa
@@ -28,8 +29,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class TbllowonganMhs extends Eloquent
 {
-	protected $primaryKey = 'low_mhs_id';
-	public $timestamps = false;
+    protected $primaryKey = 'low_mhs_id';
+    protected $table = 'tbllowongan_mhs';
+    public $timestamps = false;
 
 	protected $casts = [
 		'mahasiswa_id' => 'int',
@@ -49,7 +51,8 @@ class TbllowonganMhs extends Eloquent
 		'is_respond',
 		'respond_notes',
 		'respond_date',
-		'mhs_desc'
+		'mhs_desc',
+		'mhs_magang_doc'
 	];
 
 	public function tbllowongan()

@@ -32,3 +32,10 @@ Route::group(['prefix' => 'job', 'namespace' => 'job', 'as' => 'job.'], function
     Route::get('/{lowongan_id}/detail', 'JobController@show')->name('show');
     Route::post('/apply', ['middleware' => ['auth', 'roles'], 'uses' => 'JobController@apply', 'roles' => 'Mahasiswa'])->name('apply');
 });
+Route::group(['prefix' => 'myaccount', 'namespace' => 'myaccount', 'as' => 'myaccount.'], function(){
+    Route::get('/', 'MyAccountController@showIndex')->name('index');
+    Route::get('/{lowongan_id}/detail', 'MyAccountController@show')->name('show');
+    Route::get('/dokumen', 'MyAccountController@showDokumen')->name('dokumen');
+    Route::get('/deleteDokumen/{mhs_doc_id}', 'MyAccountController@showDokumen')->name('dokumen.delete');
+    Route::post('/apply', ['middleware' => ['auth', 'roles'], 'uses' => 'MyAccountController@apply', 'roles' => 'Mahasiswa'])->name('apply');
+});

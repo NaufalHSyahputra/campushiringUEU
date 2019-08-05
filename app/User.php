@@ -46,12 +46,12 @@ class User extends Authenticatable
 
 	public function tblperusahaan()
 	{
-		return $this->hasMany(\App\Models\Tblperusahaan::class, 'user_id');
+		return $this->hasOne(\App\Models\Tblperusahaan::class, 'user_id');
     }
 
     public function tblemployee()
 	{
-		return $this->hasMany(\App\Models\Tblemployee::class, 'user_id');
+		return $this->hasOne(\App\Models\Tblemployee::class, 'user_id');
 	}
 
 	public function tbluser_roles()

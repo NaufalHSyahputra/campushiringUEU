@@ -7,8 +7,9 @@
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
+use Carbon\Carbon;
 use EloquentFilter\Filterable;
+use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Tbllowongan
@@ -26,7 +27,7 @@ use EloquentFilter\Filterable;
  * @property \Carbon\Carbon $updated_at
  *
  * @property \App\Models\Tblperusahaan $tblperusahaan
- * @property \App\Models\TbllowonganDetil $tbllowongan_detil
+ * @property \App\Models\TbllowonganDetail $tbllowongan_detail
  * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_mhs
  * @property \App\Models\TbllowonganMhsDoc $tbllowongan_mhs_doc
  * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_prints
@@ -70,9 +71,9 @@ class Tbllowongan extends Eloquent
 		return $this->belongsTo(\App\Models\Tblperusahaan::class, 'perusahaan_id');
 	}
 
-	public function tbllowongan_detil()
+	public function tbllowongan_detail()
 	{
-		return $this->hasOne(\App\Models\TbllowonganDetil::class, 'lowongan_id');
+		return $this->hasOne(\App\Models\TbllowonganDetail::class, 'lowongan_id');
 	}
 
 	public function tbllowongan_mhs()
@@ -85,18 +86,23 @@ class Tbllowongan extends Eloquent
 		return $this->hasOne(\App\Models\TbllowonganMhsDoc::class, 'low_mhs_id');
 	}
 
-	public function tbllowongan_req_prints()
+	public function tbllowongan_req_print()
 	{
 		return $this->hasMany(\App\Models\TbllowonganReqPrint::class, 'lowongan_id');
 	}
 
-	public function tbllowongan_requests()
+	public function tbllowongan_request()
 	{
 		return $this->hasMany(\App\Models\TbllowonganRequest::class, 'lowongan_id');
 	}
 
-	public function tbllowongan_skills()
+	public function tbllowongan_skill()
 	{
 		return $this->hasMany(\App\Models\TbllowonganSkill::class, 'lowongan_id');
+    }
+
+    public function scopeLowonganActive($query)
+    {
+        return $query->where('is_approved', 1)->where('expired_date', '>', Carbon::now())->where('is_active', 1);
     }
 }
