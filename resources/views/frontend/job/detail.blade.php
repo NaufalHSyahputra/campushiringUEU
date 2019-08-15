@@ -6,8 +6,7 @@
          <div class="row">
             <div class="col-xs-12 text-center">
                 <span class="section-tit-line"></span>
-                    <h2>{{ $lowongan->title }}</h2>
-                    <p><a href="#"><i class="fa fa-building" aria-hidden="true"></i></a> &nbsp; > &nbsp;<a href="#">{{ $lowongan->tblperusahaan->nama }}</a></p>
+                    <h2>Detail Lowongan</h2>
             </div>
         </div>
     </div>

@@ -19,10 +19,10 @@ Version: 1.0
  *      2.8 - Display
  *      2.9 - Positions
  *      2.10 - Buttons
- * 
+ *
  * 3. - LOGO & NAVIGATION
- *      3.1 - Topbar 
- *      3.2 - Navbar 
+ *      3.1 - Topbar
+ *      3.2 - Navbar
  * 4. - SECTION
  *      4.01 Section - Banner
  *      4.02 Section - Search
@@ -72,8 +72,8 @@ Version: 1.0
  *      4.47 Section - Site Map
  *      4.48 Section - Spinner
  * 5. - Footer
- *      5.1 Footer Wiget Area 
- *      5.2 Footer Bottom Bar 
+ *      5.1 Footer Wiget Area
+ *      5.2 Footer Bottom Bar
  * -----------------------------------------------------------------------------
  */
 
@@ -362,7 +362,7 @@ ul.jbm-menu.list-none.dis-inline {position: static;float: left;width: 100%;text-
 .mobile-username a{font-size: 14px;color: #3f4f5e}
 .mobm-active .jbm-menu-wrap{left: 0;opacity: 1;visibility: visible;}
 .mobm-active .jbm-overlay{opacity: 1;visibility: visible;}
-.jbm-menu-container > ul > li:nth-child(6) > ul{right: 0;} 
+.jbm-menu-container > ul > li:nth-child(6) > ul{right: 0;}
 
 /**
  * 4. SECTION
@@ -546,7 +546,7 @@ ul.jbm-menu.list-none.dis-inline {position: static;float: left;width: 100%;text-
 /* Page Title */
 .jbm-page-title .section-tit-line{background-color:#fff}
 .jbm-page-title h2{margin-bottom:65px;color:#fff;margin-top:10px;font-size:32px}
-.jbm-page-title{width:100%;padding-top:75px;padding-bottom:75px;position:relative;background-size:cover;background-image:no-repeat;background-position:center center}
+.jbm-page-title{width:100%;padding-top:25px;padding-bottom:25px;position:relative;background-size:cover;background-image:no-repeat;background-position:center center}
 .jbm-page-title:after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(63,77,91,0.80);z-index:8}
 .jbm-page-title .container{position:relative;z-index:9}
 .page-title-bg-1{background-image:url(../img/page-title-img-1.jpg)}
@@ -1148,37 +1148,37 @@ a:hover{text-decoration:none}
 .loader-circle{position:absolute;left:50%;top:50%;width:120px;height:120px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);margin-left:-60px;margin-top:-60px}
 .loader-line-mask{position:absolute;left:50%;top:50%;width:60px;height:120px;margin-left:-60px;margin-top:-60px;overflow:hidden;-webkit-transform-origin:60px 60px;-moz-transform-origin:60px 60px;-o-transform-origin:60px 60px;-ms-transform-origin:60px 60px;transform-origin:60px 60px;-webkit-mask-image:-webkit-linear-gradient(top,#000,rgba(0,0,0,0));-webkit-animation:rotate 1.2s infinite linear;-moz-animation:rotate 1.2s infinite linear;-o-animation:rotate 1.2s infinite linear;animation:rotate 1.2s infinite linear}
 .loader-line-mask .loader-line{width:120px;height:120px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.5)}
-lesshat-selector { -lh-property: 0; } 
+lesshat-selector { -lh-property: 0; }
   @-webkit-keyframes rotate{ 0% { -webkit-transform: rotate(0deg);} 100% { -webkit-transform: rotate(360deg);}}
   @-moz-keyframes rotate{ 0% { -moz-transform: rotate(0deg);} 100% { -moz-transform: rotate(360deg);}}
   @-o-keyframes rotate{ 0% { -o-transform: rotate(0deg);} 100% { -o-transform: rotate(360deg);}}
   @keyframes rotate{ 0% {-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);transform: rotate(0deg);} 100% {-webkit-transform: rotate(360deg);-moz-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);};
 }
-lesshat-selector { -lh-property: 0; } 
+lesshat-selector { -lh-property: 0; }
   @-webkit-keyframes rotate{ 0% { -webkit-transform: rotate(0deg);} 100% { -webkit-transform: rotate(360deg);}}
   @-moz-keyframes rotate{ 0% { -moz-transform: rotate(0deg);} 100% { -moz-transform: rotate(360deg);}}
   @-o-keyframes rotate{ 0% { -o-transform: rotate(0deg);} 100% { -o-transform: rotate(360deg);}}
   @keyframes rotate{ 0% {-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);transform: rotate(0deg);} 100% {-webkit-transform: rotate(360deg);-moz-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);};
 }
-lesshat-selector { -lh-property: 0; } 
+lesshat-selector { -lh-property: 0; }
   @-webkit-keyframes fade{ 0% { opacity: 1;} 50% { opacity: 0.25;}}
   @-moz-keyframes fade{ 0% { opacity: 1;} 50% { opacity: 0.25;}}
   @-o-keyframes fade{ 0% { opacity: 1;} 50% { opacity: 0.25;}}
   @keyframes fade{ 0% { opacity: 1;} 50% { opacity: 0.25;};
 }
-lesshat-selector { -lh-property: 0; } 
+lesshat-selector { -lh-property: 0; }
   @-webkit-keyframes fade{ 0% { opacity: 1;} 50% { opacity: 0.25;}}
   @-moz-keyframes fade{ 0% { opacity: 1;} 50% { opacity: 0.25;}}
   @-o-keyframes fade{ 0% { opacity: 1;} 50% { opacity: 0.25;}}
   @keyframes fade{ 0% { opacity: 1;} 50% { opacity: 0.25;};
 }
-lesshat-selector { -lh-property: 0; } 
+lesshat-selector { -lh-property: 0; }
   @-webkit-keyframes fade-in{ 0% { opacity: 0;} 100% { opacity: 1;}}
   @-moz-keyframes fade-in{ 0% { opacity: 0;} 100% { opacity: 1;}}
   @-o-keyframes fade-in{ 0% { opacity: 0;} 100% { opacity: 1;}}
   @keyframes fade-in{ 0% { opacity: 0;} 100% { opacity: 1;};
 }
-lesshat-selector {-lh-property: 0; } 
+lesshat-selector {-lh-property: 0; }
   @-webkit-keyframes fade-in{ 0% { opacity: 0;} 100% { opacity: 1;}}
   @-moz-keyframes fade-in{ 0% { opacity: 0;} 100% { opacity: 1;}}
   @-o-keyframes fade-in{ 0% { opacity: 0;} 100% { opacity: 1;}}
