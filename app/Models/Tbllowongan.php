@@ -47,7 +47,7 @@ class Tbllowongan extends Eloquent
 		'perusahaan_id' => 'int',
 		'is_active' => 'bool',
 		'is_approved' => 'bool',
-		'duration' => 'bool'
+		'duration' => 'int'
 	];
 
 	protected $dates = [

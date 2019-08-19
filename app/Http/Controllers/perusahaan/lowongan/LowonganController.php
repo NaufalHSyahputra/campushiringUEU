@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\TbllowonganDetail;
 use App\Models\TbllowonganTypeMst;
 use App\Http\Controllers\Controller;
+use App\Models\TbllowonganMhs;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\Datatables\Datatables;
@@ -31,13 +32,15 @@ class LowonganController extends Controller
     public function getData(){
         $lowongans = Tbllowongan::where("perusahaan_id", Auth::user()->tblperusahaan->perusahaan_id);
         return Datatables::of($lowongans)->addColumn('action', function ($menu) {
-            return '<div class="row"><div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-primary editbutton" data-id="'.$menu->lowongan_id.'"><i class="fas fa-edit"></i></a></div>
-            <div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-danger deletebutton" data-url="'.route('admin.master.employee.delete', $menu->lowongan_id).'"><i class="fas fa-trash"></i></a></div></div>';
+            return '<div class="row"><div class="col-md-6"><a href="'.route('perusahaan.lowongan.detail', $menu->lowongan_id).'" class="btn btn-icon icon-left btn-primary editbutton" data-id="'.$menu->lowongan_id.'"><i class="fas fa-edit"></i></a></div>
+            <div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-danger deletebutton" data-url="'.route('perusahaan.lowongan.detail', $menu->lowongan_id).'"><i class="fas fa-trash"></i></a></div></div>';
         })->editColumn('is_active', function ($data) {return $data->is_visible == 1 ? "Aktif" : "Tidak Aktif";})->editColumn('is_approved', function ($data) {return $data->is_visible == 1 ? "Sudah di Approve" : "Belum di Approve";})->make(true);
     }
 
     public function showDetailLowongan($lowongan_id){
-
+        $lowongan = Tbllowongan::where("lowongan_id", $lowongan_id)->first();
+        $pelamars = TbllowonganMhs::where("lowongan_id", $lowongan_id)->get();
+        return view('perusahaan.lowongan.detail', ['lowongan' => $lowongan, 'pelamars' => $pelamars]);
     }
 
     public function showDetailMahasiswa($mahasiswa_id){
