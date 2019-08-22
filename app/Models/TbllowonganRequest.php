@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 22 Aug 2019 15:32:02 +0000.
+ * Date: Thu, 22 Aug 2019 20:09:55 +0000.
  */
 
 namespace App\Models;
@@ -11,16 +11,18 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class TbllowonganRequest
- *
+ * 
  * @property int $low_req_id
  * @property int $lowongan_id
+ * @property int $req_type_id
  * @property int $is_approved
  * @property \Carbon\Carbon $approved_date
  * @property string $approved_by
  * @property string $notes
- *
+ * 
  * @property \App\Models\Tbllowongan $tbllowongan
- * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_doc
+ * @property \App\Models\TbllowonganReqType $tbllowongan_req_type
+ * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_docs
  *
  * @package App\Models
  */
@@ -32,6 +34,7 @@ class TbllowonganRequest extends Eloquent
 
 	protected $casts = [
 		'lowongan_id' => 'int',
+		'req_type_id' => 'int',
 		'is_approved' => 'int'
 	];
 
@@ -41,6 +44,7 @@ class TbllowonganRequest extends Eloquent
 
 	protected $fillable = [
 		'lowongan_id',
+		'req_type_id',
 		'is_approved',
 		'approved_date',
 		'approved_by',
@@ -52,7 +56,12 @@ class TbllowonganRequest extends Eloquent
 		return $this->belongsTo(\App\Models\Tbllowongan::class, 'lowongan_id');
 	}
 
-	public function tbllowongan_req_doc()
+	public function tbllowongan_req_type()
+	{
+		return $this->belongsTo(\App\Models\TbllowonganReqType::class, 'req_type_id');
+	}
+
+	public function tbllowongan_req_docs()
 	{
 		return $this->hasMany(\App\Models\TbllowonganReqDoc::class, 'low_req_id');
 	}
