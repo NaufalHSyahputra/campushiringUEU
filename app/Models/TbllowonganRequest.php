@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:35 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:02 +0000.
  */
 
 namespace App\Models;
@@ -20,7 +20,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $notes
  *
  * @property \App\Models\Tbllowongan $tbllowongan
- * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_docs
+ * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_doc
  *
  * @package App\Models
  */

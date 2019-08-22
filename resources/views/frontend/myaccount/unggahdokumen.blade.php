@@ -24,7 +24,15 @@
                         <span class="section-tit-line-2 margin-bottom-40"></span>
 
                         <div class="job-posted padding-bottom-20 table-sm-setting">
-
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col-md-8 col-sm-12 col-xs-12">
                                     <h5 class="margin-bottom-40">List Dokumen</h5>
@@ -47,8 +55,8 @@
                                     <tr>
                                             <td>{{ $i+1 }}</td>
                                             <td>{{ $dokumen->tbldokumen_mst->doc_desc }}</td>
-                                            <td><a href="/imgs/mahasiswa/{{ $dokumen->doc_file }}">{{ $dokumen->doc_file }}</a></td>
-                                            <td><span class="delete margin-bottom-20" data-url="{{ route('myaccount.dokumen.delete', $dokumen->mhs_doc_id) }}"><i class="fa fa-trash"></i></span></td>
+                                            <td><a href="{{ url('/').'/document/mahasiswa/'.$dokumen->doc_file }}">{{ $dokumen->doc_file }}</a></td>
+                                            <td><span class="delete margin-bottom-20 delbutton" data-url="{{ route('myaccount.dokumen.delete', $dokumen->mhs_doc_id) }}"><i class="fa fa-trash"></i></span></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -66,16 +74,16 @@
                                 <a href="{{ route('myaccount.index') }}">Informasi Akun</a>
                             </li>
                             <li>
-                                <a href="candidate-job-history.html">Riwayat Lamaran Pekerjaan</a>
+                                <a href="{{ route('myaccount.riwayat') }}">Riwayat Lamaran Pekerjaan</a>
                             </li>
                             <li>
-                                <a href="{{ route('myaccount.dokumen') }}" class="active">Unggah Dokumen</a>
+                                <a href="{{ route('myaccount.dokumen.index') }}" class="active">Unggah Dokumen</a>
                             </li>
                             <li>
-                                <a href="candidate-account-setting.html">Ubah Password</a>
+                                <a href="{{ route("myaccount.index") }}">Ubah Password</a>
                             </li>
                             <li>
-                                <a href="#">Logout</a>
+                                <a href="{{ route('logout') }}">Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -93,14 +101,31 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          <h4 class="modal-title" id="myModalLabel">Unggah Dokumen</h4>
         </div>
         <div class="modal-body">
-          ...
+            <div class="alert alert-danger">CV, Transkrip Nilai, dan Ijazah hanya bisa diupload 1 kali. Silahkan hapus terlebih dahulu untuk memperbaharui.</div>
+            <form method="POST" enctype="multipart/form-data" action="{{ route('myaccount.dokumen.save') }}">
+            @csrf
+                    <p>Kategori Dokumen</p>
+                    <div class="form-group">
+                        <select class="form-control" name="doc_id" id="doc_id">
+                            @foreach ($mstdocs as $mstdoc)
+                                <option value="{{ $mstdoc->doc_id }}">{{ $mstdoc->doc_desc }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+                            <p>File (PDF,JPG,PNG,GIF,JPEG)</p>
+            <div class="form-group">
+                    <input type="file" name="doc_file" id="doc_file" class="form-control" required>
+                </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          </form>
         </div>
       </div>
     </div>
@@ -109,14 +134,15 @@
 @section('js')
 <script src="{{ asset('frontend_assets/js/chain.min.js') }}"></script>
 <script>
-    $(document).ready(function(){
-        $(".skillID").chained(".fakultasID");
-        $(document).on('click', '.delete', function () {
-            var id = $(this).data('url');
-        alert("Delete transaction #" + id);
-        });
+    $(document).on("click",".delbutton",function(){
+        let url = $(this).attr('data-url');
+        let confirmation = confirm("Yakin ingin menghapus data ini ?");
+        if(confirmation){
+            window.location.href = url;
+        }else{
+
+        }
     });
-    $(".jbm-select-search").select2();
 
 </script>
 @endsection

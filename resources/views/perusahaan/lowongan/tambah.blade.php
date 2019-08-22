@@ -10,7 +10,7 @@
             <h4>@yield('title-section')</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('perusahaan.lowongan.save') }}" method="POST">
+            <form action="{{ route('perusahaan.lowongan.save') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                         <label>Judul Lowongan</label>
@@ -76,6 +76,14 @@
                                 <option value="1">Ya</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                                <label for="surat_peromohonan">Surat Permohonan</label>
+                                <input type="file" class="form-control" id="file_sp" name="file_sp">
+                            </div>
+                            <div class="form-group">
+                                    <label for="is_salary_nego">Poster</label>
+                                <input type="file" class="form-control" id="file_poster" name="file_poster">
+                                </div>
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
                     </form>
         </div>

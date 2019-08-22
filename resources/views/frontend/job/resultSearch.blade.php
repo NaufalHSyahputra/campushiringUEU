@@ -46,7 +46,7 @@
                     <div class="jbm-job-loop-in">
                         <div class="row">
                             <div class="col-md-3 col-sm-5 col-xs-5 full-wdth mg-btm-20 text-left jbm-first-col">
-                                <div class="jbm-company-logo"><img src="/imgs/perusahaan/{{ $low->tblperusahaan->tblperusahaan_detail->logo_pic }}" width="75px" height="75px"></div>
+                                <div class="jbm-company-logo"><img src="/imgs/perusahaan/{{ $low->tbllowongan->tblperusahaan->tblperusahaan_detail->logo_pic }}" width="75px" height="75px"></div>
                                 <div class="jbm-job-title">
                                     <a href="#" class="title-link">{{ $low->tbllowongan->title }}</a>
                                     <br />

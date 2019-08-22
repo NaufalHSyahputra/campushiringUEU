@@ -75,15 +75,15 @@ $('#table-1').dataTable({
     ajax: "{{ route('careercenter.mahasiswa.verify.getdata') }}",
     columns: [{
             data: 'nim',
-            name: 'tblmahasiswa_detail.nim'
+            name: 'nim'
         },
         {
             data: 'nama',
-            name: 'tblmahasiswa_detail.nama'
+            name: 'nama'
         },
         {
             data: 'is_approved',
-            name: 'tblmahasiswa.is_approved'
+            name: 'is_approved'
         },
         {
             data: 'action',

@@ -40,9 +40,11 @@
               <div class="card-header"><h4>Login</h4></div>
 
               <div class="card-body">
-                  @if (session('success'))
-                    <div class="alert alert-success"> {{ session('success') }}</div>
-                  @endif
+                    @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
                   @if (session('failed'))
                     <div class="alert alert-danger"> {{ session('failed') }}</div>
                   @endif
@@ -84,6 +86,10 @@
                     </button>
                   </div>
                 </form>
+                
+            <div class="mt-5 text-muted text-center">
+                    Belum memiliki akun? <a href="{{ route("register") }}">Daftar disini!</a>
+                  </div>
               </div>
             </div>
             <div class="simple-footer">

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:34 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:02 +0000.
  */
 
 namespace App\Models;
@@ -10,7 +10,7 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class TbllowonganMh
+ * Class TbllowonganMhs
  *
  * @property int $low_mhs_id
  * @property int $mahasiswa_id
@@ -29,9 +29,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class TbllowonganMhs extends Eloquent
 {
-    protected $primaryKey = 'low_mhs_id';
-    protected $table = 'tbllowongan_mhs';
-    public $timestamps = false;
+	protected $primaryKey = 'low_mhs_id';
+	public $timestamps = false;
 
 	protected $casts = [
 		'mahasiswa_id' => 'int',

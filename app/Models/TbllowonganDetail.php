@@ -2,13 +2,13 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:34 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:01 +0000.
  */
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
 use EloquentFilter\Filterable;
+use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class TbllowonganDetail
@@ -23,17 +23,17 @@ use EloquentFilter\Filterable;
  * @property int $is_salary_nego
  *
  * @property \App\Models\Tbllowongan $tbllowongan
- * @property \App\Models\Tblkotum $tblkotum
+ * @property \App\Models\Tblkota $tblkota
  * @property \App\Models\TbllowonganTypeMst $tbllowongan_type_mst
  * @property \App\Models\Tblskill $tblskill
- * @property \App\Models\tblfakultas $tblfakultas
+ * @property \App\Models\Tblfakultas $tblfakultas
  *
  * @package App\Models
  */
 class TbllowonganDetail extends Eloquent
 {
     use Filterable;
-
+    
 	protected $table = 'tbllowongan_detail';
 	public $incrementing = false;
 	public $timestamps = false;
@@ -81,6 +81,6 @@ class TbllowonganDetail extends Eloquent
 
 	public function tblfakultas()
 	{
-		return $this->belongsTo(\App\Models\tblfakultas::class, 'fakultas_id');
+		return $this->belongsTo(\App\Models\Tblfakultas::class, 'fakultas_id');
 	}
 }

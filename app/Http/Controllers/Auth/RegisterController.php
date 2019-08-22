@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use App\Models\Tblperusahaan;
 use App\Models\TblmahasiswaRequest;
 use App\Http\Controllers\Controller;
+use App\Models\TblmahasiswaDetail;
+use App\Models\TblperusahaanDetail;
 use App\Models\TblperusahaanRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -41,7 +43,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -78,7 +80,7 @@ class RegisterController extends Controller
 
             return Validator::make($data, [
                 'nama' => ['required', 'string', 'max:50'],
-                'web' => ['required', 'url'],
+                'web' => ['required'],
                 'alamat' => ['required', 'string'],
                 'phone_number' => ['required', 'string', 'max:15'],
                 'deskripsi' => ['required'],
@@ -106,7 +108,6 @@ class RegisterController extends Controller
                 'prov_id' => ['required'],
                 'jurusan_id' => ['required'],
                 'fakultas_id' => ['required'],
-                'tahun_lulus' => ['required', 'string', 'max:4'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbluser'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
@@ -138,44 +139,56 @@ class RegisterController extends Controller
                 $prs = Tblperusahaan::create([
                     'user_id' => $user_id,
                     'nama' => $data['nama'],
-                    'web' => $data['web'],
+                    'kota_id' => $data['kota_id'],
+                    'prov_id' => $data['prov_id'],
+                ]);
+                $perusahaan_id = $prs->perusahaan_id;
+                $prsDetail = TblperusahaanDetail::create([
+                    'perusahaan_id' => $perusahaan_id,
                     'alamat' => $data['alamat'],
                     'phone_number' => $data['phone_number'],
                     'deskripsi' => $data['deskripsi'],
                     'logo_pic' => $imageName,
-                    'kota_id' => $data['kota_id'],
-                    'prov_id' => $data['prov_id'],
+                    'web' => $data['web'],
                     'pic_name' => $data['pic_name'],
                     'pic_phone' => $data['pic_phone'],
                     'pic_email' => $data['pic_email'],
                     'pic_title' => $data['pic_title'],
-                    'email' => $data['email'],
                 ]);
                 $req = TblperusahaanRequest::create([
-                    'perusahaan_id' => $prs->perusahaan_id,
+                    'perusahaan_id' => $perusahaan_id,
                     'req_date' => Carbon::now()
                 ]);
                 return $prs;
             } else {
+                if ($data["is_lulus"] == 0) {
+                    $tahun = 0;
+                }else{
+                    $tahun = $data["tahun_lulus"];
+                }
                 $mhs =  Tblmahasiswa::create([
                     'user_id' => $user_id,
-                    'nama' => $data['nama'],
-                    'nim' => $data['nim'],
-                    'nik' => $data['nik'],
-                    'tahun_ajaran' => $data['tahun_ajaran'],
-                    'alamat' => $data['alamat'],
-                    'nohp' => $data['nohp'],
-                    'gender' => $data['gender'],
-                    'is_lulus' => $data['is_lulus'],
                     'kota_id' => $data['kota_id'],
                     'prov_id' => $data['prov_id'],
                     'jurusan_id' => $data['jurusan_id'],
                     'fakultas_id' => $data['fakultas_id'],
-                    'tahun_lulus' => $data['tahun_lulus'],
+                ]);
+                $mahasiswa_id = $mhs->mahasiswa_id;
+                $mhsDetail = TblmahasiswaDetail::create([
+                    'mahasiswa_id' => $mahasiswa_id,
+                    'alamat' => $data['alamat'],
+                    'nama' => $data['nama'],
+                    'nim' => $data['nim'],
+                    'nik' => $data['nik'],
+                    'tahun_ajaran' => $data['tahun_ajaran'],
+                    'nohp' => $data['nohp'],
+                    'gender' => $data['gender'],
+                    'is_lulus' => $data['is_lulus'],
+                    'tahun_lulus' => $tahun,
                     'email' => $data['email'],
                 ]);
                 $req = TblmahasiswaRequest::create([
-                    'mahasiswa_id' => $mhs->mahasiswa_id,
+                    'mahasiswa_id' => $mahasiswa_id,
                     'req_date' => Carbon::now()
                 ]);
                 return $mhs;
@@ -188,6 +201,6 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath())->with('success', "Pendaftaran berhasil, silahkan tunggu konfirmasi career center Universitas Esa Unggul.");
+                        ?: redirect($this->redirectPath())->with('status', "Pendaftaran berhasil, silahkan tunggu konfirmasi career center Universitas Esa Unggul.");
     }
 }

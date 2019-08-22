@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:34 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:01 +0000.
  */
 
 namespace App\Models;
@@ -10,7 +10,7 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Tblkotum
+ * Class Tblkota
  *
  * @property string $kota_id
  * @property string $kota_nama
@@ -18,17 +18,17 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @property \App\Models\Tblprovinsi $tblprovinsi
  * @property \App\Models\TbllowonganDetail $tbllowongan_detail
- * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswas
- * @property \Illuminate\Database\Eloquent\Collection $tblperusahaans
+ * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswa
+ * @property \Illuminate\Database\Eloquent\Collection $tblperusahaan
  *
  * @package App\Models
  */
 class Tblkota extends Eloquent
 {
-	protected $primaryKey = 'kota_id';
-	public $incrementing = false;
-    public $timestamps = false;
+    protected $primaryKey = 'kota_id';
     protected $table = 'tblkota';
+	public $incrementing = false;
+	public $timestamps = false;
 
 	protected $fillable = [
 		'kota_nama',

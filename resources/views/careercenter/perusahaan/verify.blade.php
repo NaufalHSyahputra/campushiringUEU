@@ -75,19 +75,19 @@ $('#table-1').dataTable({
     ajax: "{{ route('careercenter.perusahaan.verify.getdata') }}",
     columns: [{
             data: 'nama',
-            name: 'tblperusahaan.nama'
+            name: 'nama'
         },
         {
             data: 'alamat',
-            name: 'tblperusahaan_detail.alamat'
+            name: 'alamat'
         },
         {
             data: 'phone_number',
-            name: 'tblperusahaan_detail.phone_number'
+            name: 'phone_number'
         },
         {
             data: 'is_approved',
-            name: 'tblperusahaan.is_approved'
+            name: 'is_approved'
         },
         {
             data: 'action',

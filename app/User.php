@@ -54,7 +54,7 @@ class User extends Authenticatable
 		return $this->hasOne(\App\Models\Tblemployee::class, 'user_id');
 	}
 
-	public function tbluser_roles()
+	public function tbluser_role()
 	{
 		return $this->hasOne(\App\Models\TbluserRole::class, 'user_id');
     }
@@ -80,7 +80,7 @@ class User extends Authenticatable
 	}
 	private function getUserRole()
 	{
-		return $this->tbluser_roles()->getResults();
+		return $this->tbluser_role()->getResults();
 	}
 	private function checkIfUserHasRole($need_role)
 	{

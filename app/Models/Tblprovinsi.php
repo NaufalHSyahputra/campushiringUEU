@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:35 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:02 +0000.
  */
 
 namespace App\Models;
@@ -16,8 +16,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $prov_nama
  *
  * @property \Illuminate\Database\Eloquent\Collection $tblkota
- * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswas
- * @property \Illuminate\Database\Eloquent\Collection $tblperusahaans
+ * @property \Illuminate\Database\Eloquent\Collection $tblmahasiswa
+ * @property \Illuminate\Database\Eloquent\Collection $tblperusahaan
  *
  * @package App\Models
  */

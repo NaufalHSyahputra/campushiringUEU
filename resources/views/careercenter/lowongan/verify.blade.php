@@ -26,6 +26,7 @@
                             <th>Status Approval</th>
                             <th>Tanggal Approval</th>
                             <th>Diapprove oleh</th>
+                            <th>Tipe Request</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -94,27 +95,31 @@ $('#table-1').dataTable({
         },
         {
             data: 'nama',
-            name: 'tblperusahaan.nama'
+            name: 'nama'
         },
         {
             data: 'title',
-            name: 'tbllowongan.title'
+            name: 'title'
         },
         {
             data: 'duration',
-            name: 'tbllowongan.duration'
+            name: 'duration'
         },
         {
             data: 'is_approved',
-            name: 'tbllowongan.is_approved'
+            name: 'is_approved'
         },
         {
             data: 'approved_date',
-            name: 'tbllowongan.approved_date'
+            name: 'approved_date'
         },
         {
             data: 'approved_by',
-            name: 'tbllowongan.approved_by'
+            name: 'approved_by'
+        },
+        {
+            data: 'req_type_id',
+            name: 'req_type_id'
         },
         {
             data: 'action',

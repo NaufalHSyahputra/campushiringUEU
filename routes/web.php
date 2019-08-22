@@ -29,13 +29,20 @@ Route::get('/', 'FrontHomeController@index')->name('index');
 Route::post('/search', 'FrontHomeController@search')->name('search');
 Route::group(['prefix' => 'job', 'namespace' => 'job', 'as' => 'job.'], function(){
     Route::get('/', 'JobController@all')->name('all');
+    Route::get('/fakultas/{fakultas_id}', 'JobController@allbyFakultas')->name('allbyFakultas');
     Route::get('/{lowongan_id}/detail', 'JobController@show')->name('show');
     Route::post('/apply', ['middleware' => ['auth', 'roles'], 'uses' => 'JobController@apply', 'roles' => 'Mahasiswa'])->name('apply');
 });
 Route::group(['prefix' => 'myaccount', 'namespace' => 'myaccount', 'as' => 'myaccount.'], function(){
-    Route::get('/', 'MyAccountController@showIndex')->name('index');
+    Route::get('/', 'MyAccountController@showInfoAkun')->name('index');
+    Route::post('/informasiAkun', 'MyAccountController@prosesInfoAkun')->name('informasiAkun.proses');
+    Route::get('/ubahpass', 'MyAccountController@showUbahPass')->name('ubahpass');
     Route::get('/{lowongan_id}/detail', 'MyAccountController@show')->name('show');
-    Route::get('/dokumen', 'MyAccountController@showDokumen')->name('dokumen');
-    Route::get('/deleteDokumen/{mhs_doc_id}', 'MyAccountController@showDokumen')->name('dokumen.delete');
-    Route::post('/apply', ['middleware' => ['auth', 'roles'], 'uses' => 'MyAccountController@apply', 'roles' => 'Mahasiswa'])->name('apply');
+    Route::get("/riwayat-lamaran", "MyAccountController@showRiwayat")->name('riwayat');
+    Route::post("/ubahpass", "MyAccountController@prosesUbahPass")->name('ubahpass.proses');
+    Route::group(['prefix' => 'dokumen', 'as' => 'dokumen.'], function(){
+        Route::get('/dokumen', 'UnggahDokumenController@index')->name('index');
+        Route::get('/dokumen/delete/{mhs_doc_id}', 'UnggahDokumenController@delete')->name('delete');
+        Route::post('/dokumen/save', 'UnggahDokumenController@save')->name('save');
+    });
 });

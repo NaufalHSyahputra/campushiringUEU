@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:35 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:02 +0000.
  */
 
 namespace App\Models;
@@ -13,7 +13,6 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * Class TblperusahaanDetail
  * 
  * @property int $perusahaan_id
- * @property string $nama
  * @property string $alamat
  * @property string $phone_number
  * @property string $deskripsi
@@ -40,7 +39,6 @@ class TblperusahaanDetail extends Eloquent
 	];
 
 	protected $fillable = [
-		'nama',
 		'alamat',
 		'phone_number',
 		'deskripsi',
@@ -49,7 +47,8 @@ class TblperusahaanDetail extends Eloquent
 		'pic_name',
 		'pic_phone',
 		'pic_email',
-		'pic_title'
+        'pic_title',
+        'perusahaan_id'
 	];
 
 	public function tblperusahaan()

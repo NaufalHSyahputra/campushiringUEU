@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:35 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:02 +0000.
  */
 
 namespace App\Models;
@@ -16,7 +16,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $doc_name
  * @property int $is_mandatory
  *
- * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_docs
+ * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_doc
  *
  * @package App\Models
  */
@@ -26,13 +26,8 @@ class TbllowonganReqDocMst extends Eloquent
 	protected $primaryKey = 'doc_id';
 	public $timestamps = false;
 
-	protected $casts = [
-		'is_mandatory' => 'int'
-	];
-
 	protected $fillable = [
 		'doc_name',
-		'is_mandatory'
 	];
 
 	public function tbllowongan_req_doc()

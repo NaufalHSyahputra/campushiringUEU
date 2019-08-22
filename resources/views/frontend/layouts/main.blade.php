@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Esa Unggul</title>
+    <title>Campus Hiring | Universitas Esa Unggul</title>
     <!-- stylesheets-->
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend_assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -92,7 +92,7 @@
                                 <li>
                                     <a href="{{ route('job.all') }}">Lowongan Pekerjaan</a>
                                 </li>
-                                <li>
+{{--                                 <li>
                                     <a href="#">Prosedur <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <div class="mega-menu">
                                         <ul>
@@ -100,16 +100,16 @@
                                                 <h3>Mahasiswa atau Alumni</h3>
                                             </li>
                                             <li>
-                                                <a href="candidate-information.html">Pendaftaran</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"information.html">Pendaftaran</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-message.html">Pencarian Lowongan</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"message.html">Pencarian Lowongan</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-message.html">Melamar Pekerjaan</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"message.html">Melamar Pekerjaan</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-message.html">Mengunggah Dokumen</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"message.html">Mengunggah Dokumen</a>
                                             </li>
                                         </ul>
                                         <ul>
@@ -121,17 +121,17 @@
                                                 <h3>Perusahaan</h3>
                                             </li>
                                             <li>
-                                                <a href="candidate-search.html">Pendaftaran</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"search.html">Pendaftaran</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-search-with-map.html">Membuat Lowongan</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"search-with-map.html">Membuat Lowongan</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-search-with-filter.html">Melihat pelamar</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"search-with-filter.html">Melihat pelamar</a>
                                             </li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li> --}}
                                 <!--
                                 <li>
                                     <a href="#">Candidates <i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -141,16 +141,16 @@
                                                 <h3>Candidates Header</h3>
                                             </li>
                                             <li>
-                                                <a href="candidate-information.html">Candidate Dashboard</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"information.html">Candidate Dashboard</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-message.html">Messages</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"message.html">Messages</a>
                                             </li>
                                             <li>
                                                 <a href="resume.html">Resume</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-account-setting.html">Account Settings</a>
+                                                <a href="{{ route("myaccount.index") }}">Account Settings</a>
                                             </li>
                                         </ul>
                                         <ul>
@@ -158,16 +158,16 @@
                                                 <h3>Candidate Search</h3>
                                             </li>
                                             <li>
-                                                <a href="candidate-search.html">Find Candidate</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"search.html">Find Candidate</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-search-with-map.html">Map Search</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"search-with-map.html">Map Search</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-search-with-filter.html">Search with Filters</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"search-with-filter.html">Search with Filters</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-search-with-alphabets.html">Search by Alphabets</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"search-with-alphabets.html">Search by Alphabets</a>
                                             </li>
                                         </ul>
                                         <ul>
@@ -175,13 +175,13 @@
                                                 <h3>Candidate Pages</h3>
                                             </li>
                                             <li>
-                                                <a href="candidate-single.html">Candidate Single</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"single.html">Candidate Single</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-job-history.html">Job History</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"job-history.html">Job History</a>
                                             </li>
                                             <li>
-                                                <a href="cv.html">CV</a>
+                                                <a href="{{ route('myaccount.dokumen.index') }}">CV</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -214,7 +214,7 @@
                                                 <a href="employer-job-history.html">Job History</a>
                                             </li>
                                             <li>
-                                                <a href="candidate-applications.html">Candidate Applications</a>
+                                                <a href=""{{ route('myaccount.riwayat') }}"applications.html">Candidate Applications</a>
                                             </li>
                                             <li>
                                                 <a href="shortlisted-candidates.html">Shortlisted Candidates</a>
@@ -400,16 +400,16 @@
                                             <h3>Mahasiswa atau Alumni</h3>
                                         </li>
                                         <li>
-                                            <a href="candidate-information.html">Pendaftaran</a>
+                                            <a href=""{{ route('myaccount.riwayat') }}"information.html">Pendaftaran</a>
                                         </li>
                                         <li>
-                                            <a href="candidate-message.html">Pencarian Lowongan</a>
+                                            <a href=""{{ route('myaccount.riwayat') }}"message.html">Pencarian Lowongan</a>
                                         </li>
                                         <li>
-                                            <a href="candidate-message.html">Melamar Pekerjaan</a>
+                                            <a href=""{{ route('myaccount.riwayat') }}"message.html">Melamar Pekerjaan</a>
                                         </li>
                                         <li>
-                                            <a href="candidate-message.html">Mengunggah Dokumen</a>
+                                            <a href=""{{ route('myaccount.riwayat') }}"message.html">Mengunggah Dokumen</a>
                                         </li>
                                     </ul>
                                     <ul>
@@ -421,29 +421,39 @@
                                             <h3>Perusahaan</h3>
                                         </li>
                                         <li>
-                                            <a href="candidate-search.html">Pendaftaran</a>
+                                            <a href=""{{ route('myaccount.riwayat') }}"search.html">Pendaftaran</a>
                                         </li>
                                         <li>
-                                            <a href="candidate-search-with-map.html">Membuat Lowongan</a>
+                                            <a href=""{{ route('myaccount.riwayat') }}"search-with-map.html">Membuat Lowongan</a>
                                         </li>
                                         <li>
-                                            <a href="candidate-search-with-filter.html">Melihat pelamar</a>
+                                            <a href=""{{ route('myaccount.riwayat') }}"search-with-filter.html">Melihat pelamar</a>
                                         </li>
                                     </ul>
                             </li>
                 </ul>
             </div>
             <div class="jbm-mobile-bottom-wrap">
+                @if (!Auth::guest())
                 <div class="jbm-mobile-bottom-wrap-inner clearfix">
                     <div class="mobile-username pull-left">
-                        <a href="#" class="mob-logout">Logout</a>
+                        <a href="{{ route('logout') }}" class="mob-logout">Logout</a>
                         <br />
-                        <a href="#" class="mob-user">Akun Saya</a>
+                        <a href="{{ route('myaccount.index') }}" class="mob-user">Akun Saya</a>
                     </div>
                     <div class="mobile-user-image pull-right">
                         <img src="{{ asset('frontend_assets/img/user-1.jpg') }}"  alt="user-image" />
                     </div>
                 </div>
+                @else
+                <div class="jbm-mobile-bottom-wrap-inner clearfix">
+                        <div class="mobile-username pull-left">
+                            <a href="{{ route('login') }}" class="mob-logout">Login</a>
+                            <br />
+                            <a href="{{ route('register') }}" class="mob-user">Register</a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
         <!-- end mobile menu -->

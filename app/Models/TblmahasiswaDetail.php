@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:35 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:02 +0000.
  */
 
 namespace App\Models;
@@ -11,11 +11,12 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class TblmahasiswaDetail
- * 
+ *
  * @property int $mahasiswa_id
  * @property string $nim
  * @property string $nik
  * @property string $nama
+ * @property string $alamat
  * @property string $tahun_ajaran
  * @property string $nohp
  * @property string $email
@@ -23,7 +24,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $is_lulus
  * @property string $tahun_lulus
  * @property string $foto
- * 
+ *
  * @property \App\Models\Tblmahasiswa $tblmahasiswa
  *
  * @package App\Models
@@ -44,13 +45,15 @@ class TblmahasiswaDetail extends Eloquent
 		'nim',
 		'nik',
 		'nama',
+		'alamat',
 		'tahun_ajaran',
 		'nohp',
 		'email',
 		'gender',
 		'is_lulus',
 		'tahun_lulus',
-		'foto'
+        'foto',
+        'mahasiswa_id'
 	];
 
 	public function tblmahasiswa()

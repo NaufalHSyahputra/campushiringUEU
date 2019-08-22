@@ -117,17 +117,21 @@
     <div class="container">
         <div class="row">
             @php
-                $faculties = App\Models\Tblfakultas::all();
+                $faculties = App\Models\TbllowonganDetail::rightJoin("tblfakultas", "tblfakultas.fakultas_id", "=", "tbllowongan_detail.fakultas_id")
+                ->select("tblfakultas.fakultas_id" ,"tblfakultas.fakultas_name", "tblfakultas.icon", DB::raw("count(tbllowongan_detail.fakultas_id) as count"))
+                ->groupBy("tblfakultas.fakultas_id", "tbllowongan_detail.fakultas_id", "tblfakultas.fakultas_name", "tblfakultas.icon")
+                ->get();
             @endphp
             @foreach ($faculties as $faculty)
             <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="jbm-category-box clearfix">
                         <span class="category-icon">
-                            <i class="fa fa-{{ $faculty->icon }} fa-4x"></i>
+                            <i class="fa fa-{{ $faculty->icon }} fa-3x"></i>
                         </span>
-                        <a href="#" class="jbm-cat-title">{{ $faculty->fakultas_name }}</a>
+                        <a href="{{ route("job.allbyFakultas", ["fakultas_id" => $faculty->fakultas_id]) }}" class="jbm-cat-title">{{ $faculty->fakultas_name }}</a>
+                        <br>
                         <span class="jbm-cat-jobs">
-                            17 <br />
+                            {{ $faculty->count }} <br />
                             Lowongan
                         </span>
                     </div>

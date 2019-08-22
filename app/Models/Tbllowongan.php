@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 03 Jul 2019 16:57:04 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:01 +0000.
  */
 
 namespace App\Models;
@@ -22,24 +22,23 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $active_date
  * @property \Carbon\Carbon $expired_date
  * @property bool $is_approved
- * @property bool $duration
+ * @property \Carbon\Carbon $approved_date
+ * @property string $approved_by
+ * @property int $duration
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
  * @property \App\Models\Tblperusahaan $tblperusahaan
  * @property \App\Models\TbllowonganDetail $tbllowongan_detail
  * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_mhs
- * @property \App\Models\TbllowonganMhsDoc $tbllowongan_mhs_doc
- * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_req_prints
- * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_requests
- * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_skills
+ * @property \Illuminate\Database\Eloquent\Collection $tbllowongan_request
  *
  * @package App\Models
  */
 class Tbllowongan extends Eloquent
 {
     use Filterable;
-
+    
 	protected $table = 'tbllowongan';
 	protected $primaryKey = 'lowongan_id';
 
@@ -52,7 +51,8 @@ class Tbllowongan extends Eloquent
 
 	protected $dates = [
 		'active_date',
-		'expired_date'
+		'expired_date',
+		'approved_date'
 	];
 
 	protected $fillable = [
@@ -63,6 +63,8 @@ class Tbllowongan extends Eloquent
 		'active_date',
 		'expired_date',
 		'is_approved',
+		'approved_date',
+		'approved_by',
 		'duration'
 	];
 
@@ -78,29 +80,14 @@ class Tbllowongan extends Eloquent
 
 	public function tbllowongan_mhs()
 	{
-		return $this->hasMany(\App\Models\TbllowonganMh::class, 'lowongan_id');
-	}
-
-	public function tbllowongan_mhs_doc()
-	{
-		return $this->hasOne(\App\Models\TbllowonganMhsDoc::class, 'low_mhs_id');
-	}
-
-	public function tbllowongan_req_print()
-	{
-		return $this->hasMany(\App\Models\TbllowonganReqPrint::class, 'lowongan_id');
+		return $this->hasMany(\App\Models\TbllowonganMhs::class, 'lowongan_id');
 	}
 
 	public function tbllowongan_request()
 	{
 		return $this->hasMany(\App\Models\TbllowonganRequest::class, 'lowongan_id');
-	}
-
-	public function tbllowongan_skill()
-	{
-		return $this->hasMany(\App\Models\TbllowonganSkill::class, 'lowongan_id');
     }
-
+    
     public function scopeLowonganActive($query)
     {
         return $query->where('is_approved', 1)->where('expired_date', '>', Carbon::now())->where('is_active', 1);

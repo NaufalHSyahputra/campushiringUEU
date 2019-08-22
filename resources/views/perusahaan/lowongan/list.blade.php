@@ -29,7 +29,7 @@
                             <th>Status Approval</th>
                             <th>Tanggal Approval</th>
                             <th>Diapprove oleh</th>
-                            <th>Durasi Lowongan</th>
+                            <th>Jumlah Pelamar</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -78,8 +78,8 @@ $('#table-1').dataTable({
             name: 'approved_by'
         },
         {
-            data: 'duration',
-            name: 'duration'
+            data: 'count',
+            name: 'count'
         },
         {
             data: 'action',

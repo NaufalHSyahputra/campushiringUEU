@@ -24,13 +24,34 @@
                         <span class="section-tit-line-2 margin-bottom-40"></span>
 
                         <div class="change-pass margin-bottom-30 padding-bottom-60">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            @if (session('failed'))
+                                <div class="alert alert-danger">
+                                    {{ session('failed') }}
+                                </div>
+                            @endif
                             <h5 class="margin-bottom-40 margin-top-0">Ubah Password</h5>
                              <!-- row start -->
+                             <form action="{{ route("myaccount.ubahpass.proses") }}" method="POST">
+                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" name="old-pass" id="old-pass" class="form-control">
-                                        <label for="old-pass">Password Lama*</label>
+                                        <input type="password" name="password" id="password" class="form-control">
+                                        <label for="password">Password Lama*</label>
                                     </div>
                                 </div>
                             </div>
@@ -38,8 +59,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" name="new-pass" id="new-pass" class="form-control">
-                                        <label for="new-pass">Password Baru*</label>
+                                        <input type="password" name="newpass" id="newpass" class="form-control">
+                                        <label for="newpass">Password Baru*</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -49,16 +70,17 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" name="confirm-pass" id="confirm-pass" class="form-control">
-                                        <label for="confirm-pass">Konfirmasi Password*</label>
+                                        <input type="password" name="newpass_confirmation" id="newpass_confirmation" class="form-control">
+                                        <label for="newpass_confirmation">Konfirmasi Password*</label>
                                     </div>
                                 </div>
                             </div>
                             <!-- row start -->
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12 full-wdth">
-                                    <a href="#" class="jbm-button jbm-button-3 btn">Ubah Password</a>
+                                    <button type="submit" class="jbm-button jbm-button-3 btn">Ubah Password</button>
                                 </div>
+                            </form>
                                 <div class="col-md-6 col-sm-6 col-xs-12 full-wdth text-right tct">
                                     <p>(Semua input yang ditandai dengan * wajib diisi)</p>
                                 </div>
@@ -72,19 +94,19 @@
                     <div class="jbm-emp-sidebar padding-bottom-30 padding-top-30">
                         <ul class="jbm-dashboard-links">
                             <li>
-                                <a href="candidate-information.html">Informasi Akun</a>
+                                <a href="{{ route('myaccount.index') }}">Informasi Akun</a>
                             </li>
                             <li>
-                                <a href="candidate-job-history.html">Riwayat Lamaran Pekerjaan</a>
+                                <a href="{{ route('myaccount.riwayat') }}">Riwayat Lamaran Pekerjaan</a>
                             </li>
                             <li>
-                                <a href="cv.html">Unggah Dokumen</a>
+                                <a href="{{ route('myaccount.dokumen.index') }}">Unggah Dokumen</a>
                             </li>
                             <li>
-                                <a href="candidate-account-setting.html" class="active">Ubah Password</a>
+                                <a href="{{ route("myaccount.index") }}" class="active">Ubah Password</a>
                             </li>
                             <li>
-                                <a href="#">Logout</a>
+                                <a href="{{ route('logout') }}">Logout</a>
                             </li>
                         </ul>
                     </div>

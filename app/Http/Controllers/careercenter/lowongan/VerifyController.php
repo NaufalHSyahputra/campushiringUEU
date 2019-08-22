@@ -16,11 +16,13 @@ class VerifyController extends Controller
     public function getData(){
         $lowongans = TbllowonganRequest::join("tbllowongan", "tbllowongan.lowongan_id", "=", "tbllowongan_request.lowongan_id")
         ->join("tblperusahaan", "tblperusahaan.perusahaan_id", "=", "tbllowongan.perusahaan_id")
+        ->join("tbllowongan_req_type", "tbllowongan_req_type.req_type_id", "=", "tbllowongan_request.req_type_id")
+        ->select("tbllowongan_request.low_req_id", "tbllowongan.lowongan_id", "tblperusahaan.nama", "tbllowongan.title", "tbllowongan.duration", "tbllowongan_request.is_approved", "tbllowongan_request.approved_date", "tbllowongan_request.approved_by", "tbllowongan_req_type.req_type_id")
         ->where("tbllowongan_request.is_approved", 0)
         ->get();
         return Datatables::of($lowongans)->addColumn('action', function ($menu) {
             return '<div class="row"><div class="col-md-6"><a href="#" class="btn btn-icon icon-left btn-primary editbutton" data-id="'.$menu->lowongan_id.'" data-req="'.$menu->low_req_id.'"><i class="fas fa-edit"></i></a></div></div>';
-        })->editColumn('is_active', function ($data) {return $data->is_visible == 1 ? "Aktif" : "Tidak Aktif";})->editColumn('is_approved', function ($data) {return $data->is_visible == 1 ? "Sudah di Approve" : "Belum di Approve";})->make(true);
+        })->editColumn('req_type_id', function ($data) {return $data->req_type_id == 1 ? "Baru" : "Perpanjang";})->editColumn('is_active', function ($data) {return $data->is_visible == 1 ? "Aktif" : "Tidak Aktif";})->editColumn('is_approved', function ($data) {return $data->is_visible == 1 ? "Sudah di Approve" : "Belum di Approve";})->make(true);
     }
 
     public function index(){

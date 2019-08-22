@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:35 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:02 +0000.
  */
 
 namespace App\Models;
@@ -18,7 +18,6 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $link_to
  * @property string $is_parent_child
  * @property int $parent_id
- * @property int $parent_id2
  * @property int $role_id
  * @property int $is_visible
  * @property string $icon
@@ -34,7 +33,6 @@ class Tblmenu extends Eloquent
 
 	protected $casts = [
 		'parent_id' => 'int',
-		'parent_id2' => 'int',
 		'role_id' => 'int',
 		'is_visible' => 'int'
 	];
@@ -45,7 +43,6 @@ class Tblmenu extends Eloquent
 		'link_to',
 		'is_parent_child',
 		'parent_id',
-		'parent_id2',
 		'role_id',
 		'is_visible',
 		'icon'

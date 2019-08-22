@@ -39,6 +39,10 @@
                     <button class="jbm-button apply-btn jbm-button-3" disabled>Belum Login</button>
                 @elseif (Auth::user()->tblmahasiswa == null)
                     <button class="jbm-button apply-btn jbm-button-3" disabled>Bukan Mahasiswa</button>
+                @elseif ($lowongan->is_active == 0)
+                    <button class="jbm-button apply-btn jbm-button-3" disabled>Tidak Aktif</button>
+                @elseif ($lowongan->expired_date < date("Y-m-d h:i:sa"))
+                    <button class="jbm-button apply-btn jbm-button-3" disabled>Expired</button>
                 @else
                     <button class="jbm-button apply-btn jbm-button-3">Lamar Pekerjaan</button>
                 @endif

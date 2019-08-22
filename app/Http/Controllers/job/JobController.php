@@ -42,6 +42,15 @@ class JobController extends Controller
         return view('frontend.job.all', ['kotas' => $kotas, 'fakultass' => $fakultass, 'skills' => $skills, 'levels' => $levels,'lowongans' => $lowongans]);
     }
 
+    public function allbyFakultas($fakultas_id){
+        $kotas = Tblkota::all();
+        $fakultass = Tblfakultas::all();
+        $skills = Tblskill::all();
+        $levels = TbllowonganTypeMst::all();
+        $lowongans = Tbllowongan::join("tbllowongan_detail", "tbllowongan_detail.lowongan_id", "=", "tbllowongan.lowongan_id")->where("tbllowongan.is_approved", 1)->where("tbllowongan_detail.fakultas_id", $fakultas_id)->where("tbllowongan.expired_date", ">", Carbon::now())->paginate(5);
+        return view('frontend.job.all', ['kotas' => $kotas, 'fakultass' => $fakultass, 'skills' => $skills, 'levels' => $levels,'lowongans' => $lowongans]);
+    }
+
     public function apply(Request $request){
         $lowongan = Tbllowongan::find($request->input('lowongan_id'));
         $mahasiswa = Tblmahasiswa::find(Auth::user()->tblmahasiswa->mahasiswa_id);

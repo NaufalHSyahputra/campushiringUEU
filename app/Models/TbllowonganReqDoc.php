@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 15 Jul 2019 12:30:34 +0000.
+ * Date: Thu, 22 Aug 2019 15:32:02 +0000.
  */
 
 namespace App\Models;
@@ -15,10 +15,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $id
  * @property int $low_req_id
  * @property int $doc_id
- * @property int $is_approve
- * @property string $approved_by
- * @property \Carbon\Carbon $approved_date
- * @property string $approved_notes
+ * @property string $file_name
  * 
  * @property \App\Models\TbllowonganRequest $tbllowongan_request
  * @property \App\Models\TbllowonganReqDocMst $tbllowongan_req_doc_mst
@@ -32,21 +29,13 @@ class TbllowonganReqDoc extends Eloquent
 
 	protected $casts = [
 		'low_req_id' => 'int',
-		'doc_id' => 'int',
-		'is_approve' => 'int'
-	];
-
-	protected $dates = [
-		'approved_date'
+		'doc_id' => 'int'
 	];
 
 	protected $fillable = [
 		'low_req_id',
 		'doc_id',
-		'is_approve',
-		'approved_by',
-		'approved_date',
-		'approved_notes'
+		'file_name'
 	];
 
 	public function tbllowongan_request()
