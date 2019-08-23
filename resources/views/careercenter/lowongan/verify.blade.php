@@ -130,6 +130,7 @@ $('#table-1').dataTable({
     ],
 });
 $(document).on('click', '.editbutton', function () {
+    $("#tablex").empty();
     var data_id = $(this).data('id');
     var data_req = $(this).data('req');
     $("#lowongan_id_edit").val(data_id);
