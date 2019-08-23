@@ -30,6 +30,15 @@ class LowonganController extends Controller
         return view('perusahaan.lowongan.tambah', ['kotas' => $kotas, 'lowtypes' => $lowtypes, 'skills' => $skills, 'fakultass' => $fakultass]);
     }
 
+    public function showEdit($lowongan_id){
+        $kotas = Tblkota::all();
+        $lowtypes = TbllowonganTypeMst::all();
+        $skills = Tblskill::all();
+        $fakultass = Tblfakultas::all();
+        $lowongan = Tbllowongan::find($lowongan_id);
+        return view('perusahaan.lowongan.edit', ['lowongan' => $lowongan, 'kotas' => $kotas, 'lowtypes' => $lowtypes, 'skills' => $skills, 'fakultass' => $fakultass]);
+    }
+
     public function showListLowongan(){
         return view('perusahaan.lowongan.list');
     }
@@ -110,6 +119,13 @@ class LowonganController extends Controller
         $lowdoc2->save();
         Alert::success('Tambah Lowongan Berhasil!', 'Silahkan tunggu konfirmasi dari Career Center Universitas Esa Unggul.');
         return redirect()->route('perusahaan.lowongan.index');
+    }
+
+    public function update(Request $request){
+        Tbllowongan::where("lowongan_id", $request->lowongan_id)->update($request->only(["title", "deskripsi"]));
+        TbllowonganDetail::where("lowongan_id", $request->lowongan_id)->update($request->except(["_token", "title", "deskripsi"]));
+        Alert::success('Ubah Lowongan berhasil!', 'Data Lowongan Berhasil Diubah!');
+            return redirect()->route('perusahaan.lowongan.index');
     }
 
     public function updateStatus(Request $request){

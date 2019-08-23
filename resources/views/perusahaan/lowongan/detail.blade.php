@@ -52,11 +52,14 @@
         <div class="tab-content" id="myTabContent2">
         <div class="tab-pane fade <?= $show1.$active1 ?>" id="home3" role="tabpanel" aria-labelledby="home-tab3">
                 <table class="table table-bordered">
+                        <tr>
+                                <th colspan="2" style="text-align:center;"><a href="{{ route("perusahaan.lowongan.showEdit", $lowongan->lowongan_id) }}" class="btn btn-info btn-block">Ubah Lowongan</th>
+                            </tr>
                             <tr>
                                 <td>Judul</td>
                                 <td>{{ $lowongan->title }}</td>
                             </tr>
-                            
+
                             <tr>
                                 <td>Tanggal Aktif</td>
                                 <td>{{ $lowongan->active_date }}</td>
