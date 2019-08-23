@@ -30,7 +30,7 @@ Route::post('/search', 'FrontHomeController@search')->name('search');
 Route::group(['prefix' => 'job', 'namespace' => 'job', 'as' => 'job.'], function(){
     Route::get('/', 'JobController@all')->name('all');
     Route::get('/fakultas/{fakultas_id}', 'JobController@allbyFakultas')->name('allbyFakultas');
-    Route::get('/{lowongan_id}/detail', 'JobController@show')->name('show');
+    Route::get('/{lowongan_id}/detail', 'JobController@show')->middleware("auth")->name('show');
     Route::post('/apply', ['middleware' => ['auth', 'roles'], 'uses' => 'JobController@apply', 'roles' => 'Mahasiswa'])->name('apply');
 });
 Route::group(['prefix' => 'myaccount', 'namespace' => 'myaccount', 'as' => 'myaccount.'], function(){

@@ -126,7 +126,7 @@
     <!-- end section title -->
 </div>
 <!-- end section helpbox -->
-@if (Auth::user()->tblmahasiswa != null)
+@if (!Auth::guest() && Auth::user()->tblmahasiswa != null)
 <div class="apply-job-popup">
     <div class="popup-overlay"></div>
     <!-- Candidate popup -->
