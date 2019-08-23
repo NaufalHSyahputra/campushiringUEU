@@ -32,7 +32,7 @@
                                     <th>Nama Perusahaan</th>
                                     <th>Tanggal Pelamaran</th>
                                     <th>Status Respon</th>
-                                    <th>Detail Respon</th>
+                                    <th>Pesan Respon</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
@@ -40,9 +40,9 @@
                                         <td>{{ $low->tbllowongan->title }}</td>
                                         <td>{{ $low->tbllowongan->tblperusahaan->nama }}</td>
                                         <td>{{ $low->apply_dates }}</td>
-                                        <td>{{ $low->is_respon == 1 ? "Sudah di respon" : "Belum di respon" }}</td>
-                                        @if ($low->is_respon == 1)
-                                            <td><button class="btn btn-success">Detail</button></td>
+                                        <td>{{ $low->is_respond == 1 ? "Sudah di respon" : "Belum di respon" }}</td>
+                                        @if ($low->is_respond == 1)
+                                            <td>{{ $low->respond_notes }}</td>
                                         @else
                                         <td><button class="btn btn-danger" disabled>Belum Di Respon</button></td>
                                         @endif
@@ -81,7 +81,41 @@
         </div>
         <hr>
     </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Respon Perusahaan</h4>
+        </div>
+        <div class="modal-body">
+                <table class="table table-bordered">
+                        <tr>
+                                <th colspan="2" style="text-align:center;">Respon Perusahaan untuk lamaran anda.</th>
+                            </tr>
+                            <tr>
+                                <td>Direspon oleh</td>
+                                <td><div id="respond_by"></div></td>
+                            </tr>
 
+                            <tr>
+                                <td>Tanggal Respon</td>
+                                <td><div id="respond_date"></div></td>
+                            </tr>
+                            <tr>
+                                <td>Pesan</td>
+                                <td><div id="respond_notes"></div></td>
+                            </tr>
+                      </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- employer dashboard -->
 @endsection
